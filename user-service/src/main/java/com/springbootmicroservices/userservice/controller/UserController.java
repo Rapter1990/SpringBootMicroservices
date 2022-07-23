@@ -1,6 +1,7 @@
 package com.springbootmicroservices.userservice.controller;
 
 import com.springbootmicroservices.userservice.dto.LoginRequest;
+import com.springbootmicroservices.userservice.dto.SignUpRequest;
 import com.springbootmicroservices.userservice.entity.User;
 import com.springbootmicroservices.userservice.service.KeycloakService;
 import com.springbootmicroservices.userservice.service.UserService;
@@ -33,14 +34,14 @@ public class UserController {
     private final KeycloakService keycloakService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUpUser(@RequestBody User user){
+    public ResponseEntity<?> signUpUser(@RequestBody SignUpRequest signUpRequest){
 
         LOGGER.info("UserController | signUpUser is started");
-        LOGGER.info("UserController | getByCityId | user : " + user.getRole());
-        LOGGER.info("UserController | getByCityId | user : " + user.getEmail());
-        LOGGER.info("UserController | getByCityId | user : " + user.getName());
+        LOGGER.info("UserController | signUpUser | SignUpRequest role : " + signUpRequest.getRole());
+        LOGGER.info("UserController | signUpUser | SignUpRequest email : " + signUpRequest.getEmail());
+        LOGGER.info("UserController | signUpUser | SignUpRequest name : " + signUpRequest.getName());
 
-        return ResponseEntity.ok(userService.signUpUser(user));
+        return ResponseEntity.ok(userService.signUpUser(signUpRequest));
     }
 
     @PostMapping("/login")

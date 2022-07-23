@@ -1,7 +1,7 @@
 package com.springbootmicroservices.userservice.service;
 
-import com.springbootmicroservices.userservice.entity.User;
+import com.springbootmicroservices.userservice.dto.SignUpRequest;
 
 public interface UserService {
-    public String signUpUser(User user);
+    public String signUpUser(SignUpRequest signUpRequest);
 }

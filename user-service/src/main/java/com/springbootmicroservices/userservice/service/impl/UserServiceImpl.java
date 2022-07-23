@@ -1,6 +1,8 @@
 package com.springbootmicroservices.userservice.service.impl;
 
+import com.springbootmicroservices.userservice.convertor.UserMapper;
 import com.springbootmicroservices.userservice.dto.KeycloakUser;
+import com.springbootmicroservices.userservice.dto.SignUpRequest;
 import com.springbootmicroservices.userservice.entity.User;
 import com.springbootmicroservices.userservice.repository.UserRepository;
 import com.springbootmicroservices.userservice.service.KeycloakService;
@@ -24,24 +26,26 @@ public class UserServiceImpl implements UserService {
     private final KeycloakService keycloakService;
 
     @Override
-    public String signUpUser(User user) {
+    public String signUpUser(SignUpRequest signUpRequest) {
 
         LOGGER.info("UserServiceImpl | signUpUser is started");
 
         KeycloakUser keycloakUser = new KeycloakUser();
-        keycloakUser.setFirstName(user.getName());
-        keycloakUser.setLastName(user.getSurname());
-        keycloakUser.setEmail(user.getEmail());
-        keycloakUser.setPassword(user.getPassword());
-        keycloakUser.setRole(user.getRole());
+        keycloakUser.setFirstName(signUpRequest.getName());
+        keycloakUser.setLastName(signUpRequest.getSurname());
+        keycloakUser.setEmail(signUpRequest.getEmail());
+        keycloakUser.setPassword(signUpRequest.getPassword());
+        keycloakUser.setRole(signUpRequest.getRole());
 
         int status = keycloakService.createUserWithKeycloak(keycloakUser);
 
         LOGGER.info("UserServiceImpl | signUpUser | status : " + status);
 
-        user.setCreatedAt(LocalDateTime.now());
+        User signUpUser = UserMapper.signUpRequestToUser(signUpRequest);
 
-        userRepository.save(user);
+        signUpUser.setCreatedAt(LocalDateTime.now());
+
+        userRepository.save(signUpUser);
 
         return "Sign In";
     }
