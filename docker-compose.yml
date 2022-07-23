@@ -1,12 +1,35 @@
 services:
-  eurekaserver:
-    image: final-project/eurekaserver:0.0.1-SNAPSHOT
+
+  database:
+    container_name: mysql-database
+    image: 'mysql:latest'
     ports:
-      - "8761:8761"
-    depends_on:
-      configserver:
-        condition: service_started
+      - "3366:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: "springbootuser"
+      MYSQL_USER: "springmicroserviceuser"
+      MYSQL_PASSWORD: "111111"
+      MYSQL_ROOT_PASSWORD: "111111"
+    volumes:
+      - db-data:/var/lib/mysql
     networks:
       backend:
         aliases:
-          - "eurekaserver"
+          - "database"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:18.0.2
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - "8181:8080"
+    networks:
+      backend:
+        aliases:
+          - "keycloak"
+
+networks:
+  backend:
+    driver: bridge
