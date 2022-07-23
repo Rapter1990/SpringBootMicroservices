@@ -52,6 +52,7 @@ public class KeycloakServiceImpl implements KeycloakService {
                 .realm(realm)
                 .serverUrl("http://localhost:8080/auth")
                 .clientId("spring-boot-microservice-keycloak")
+                .clientSecret("oRMX1tNoNdmkSb9ppMGRiOcGSeOaa1Rb")
                 .username(username)
                 .password(password)
                 .build();
@@ -61,11 +62,13 @@ public class KeycloakServiceImpl implements KeycloakService {
     @Override
     public int createUserWithKeycloak(KeycloakUser keycloakUser) {
 
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak is started");
+
         UserRepresentation userRepresentation = new UserRepresentation();
         userRepresentation.setFirstName(keycloakUser.getFirstName());
         userRepresentation.setLastName(keycloakUser.getLastName());
         userRepresentation.setEmail(keycloakUser.getEmail());
-        userRepresentation.setUsername(keycloakUser.getEmail());
+        userRepresentation.setUsername(keycloakUser.getUsername());
         HashMap<String, List<String>> clientRoles = new HashMap<>();
         clientRoles.put("spring-boot-microservice-keycloak",Collections.singletonList(keycloakUser.getRole()));
         userRepresentation.setClientRoles(clientRoles);
@@ -83,7 +86,8 @@ public class KeycloakServiceImpl implements KeycloakService {
 
         Response response = keycloak.realm(realm).users().create(userRepresentation);
 
-        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | response status : " + response.getStatus());
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | response STATUS : " + response.getStatus());
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | response INFO : " + response.getStatusInfo());
 
         return response.getStatus();
     }
