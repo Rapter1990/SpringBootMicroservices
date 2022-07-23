@@ -1,0 +1,12 @@
+services:
+  eurekaserver:
+    image: final-project/eurekaserver:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    depends_on:
+      configserver:
+        condition: service_started
+    networks:
+      backend:
+        aliases:
+          - "eurekaserver"
