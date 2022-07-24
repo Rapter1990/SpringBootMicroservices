@@ -46,21 +46,35 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<AccessTokenResponse> login(@RequestBody LoginRequest request){
+
+        LOGGER.info("UserController | login is started");
+
         AccessTokenResponse accessTokenResponse =keycloakService.loginWithKeycloak(request);
         if (accessTokenResponse == null){
+            LOGGER.info("UserController | login | Http Status Bad Request");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(accessTokenResponse);
         }
+
+        LOGGER.info("UserController | login | Http Status Ok");
+
         return ResponseEntity.ok(accessTokenResponse);
     }
 
 
     @PostMapping("/info")
     public ResponseEntity<?> infoUser(){
+
+        LOGGER.info("UserController | infoUser is started");
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         KeycloakPrincipal principal = (KeycloakPrincipal)auth.getPrincipal();
         KeycloakSecurityContext session = principal.getKeycloakSecurityContext();
         AccessToken accessToken = session.getToken();
+
         String username = accessToken.getPreferredUsername();
+
+        LOGGER.info("UserController | infoUser | username : " + username);
+
         String emailID = accessToken.getEmail();
         String lastname = accessToken.getFamilyName();
         String firstname = accessToken.getGivenName();
@@ -68,6 +82,9 @@ public class UserController {
         AccessToken.Access access = accessToken.getRealmAccess();
         Set<String> roles = access.getRoles();
         String firstRole = roles.stream().findFirst().get();
+
+        LOGGER.info("UserController | infoUser | firstRole : " + firstRole);
+
         return ResponseEntity.ok(firstRole);
     }
 

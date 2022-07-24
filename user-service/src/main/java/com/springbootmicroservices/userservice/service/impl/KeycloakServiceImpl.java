@@ -6,7 +6,6 @@ import com.springbootmicroservices.userservice.dto.LoginRequest;
 import com.springbootmicroservices.userservice.service.KeycloakService;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
-import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -70,7 +69,7 @@ public class KeycloakServiceImpl implements KeycloakService {
         userRepresentation.setEmail(keycloakUser.getEmail());
         userRepresentation.setUsername(keycloakUser.getUsername());
         HashMap<String, List<String>> clientRoles = new HashMap<>();
-        clientRoles.put("spring-boot-microservice-keycloak",Collections.singletonList(keycloakUser.getRole()));
+        clientRoles.put(KeycloakConfig.clientId,Collections.singletonList(keycloakUser.getRole()));
         userRepresentation.setClientRoles(clientRoles);
 
         userRepresentation.setEnabled(true);
