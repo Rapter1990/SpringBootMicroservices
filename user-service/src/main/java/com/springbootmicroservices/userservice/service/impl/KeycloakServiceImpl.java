@@ -1,10 +1,12 @@
 package com.springbootmicroservices.userservice.service.impl;
 
+import com.springbootmicroservices.userservice.config.KeycloakConfig;
 import com.springbootmicroservices.userservice.dto.KeycloakUser;
 import com.springbootmicroservices.userservice.dto.LoginRequest;
 import com.springbootmicroservices.userservice.service.KeycloakService;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -23,8 +25,6 @@ import java.util.List;
 public class KeycloakServiceImpl implements KeycloakService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    private String realm = "my-realm-client";
 
     private final Keycloak keycloak;
 
@@ -49,10 +49,10 @@ public class KeycloakServiceImpl implements KeycloakService {
     private Keycloak buildKeycloak(String username, String password) {
 
         return KeycloakBuilder.builder()
-                .realm(realm)
-                .serverUrl("http://localhost:8181/auth")
-                .clientId("spring-boot-microservice-keycloak")
-                .clientSecret("o7qglfZy50do87iFJmIy2lA0w4zo53ro")
+                .realm(KeycloakConfig.realm)
+                .serverUrl(KeycloakConfig.serverUrl)
+                .clientId(KeycloakConfig.clientId)
+                .clientSecret(KeycloakConfig.clientSecret)
                 .username(username)
                 .password(password)
                 .build();
@@ -84,11 +84,12 @@ public class KeycloakServiceImpl implements KeycloakService {
         userRepresentation.setCredentials(Collections.singletonList(credentialRepresentation));
 
 
-        Response response = keycloak.realm(realm).users().create(userRepresentation);
+        Response response = keycloak.realm(KeycloakConfig.realm).users().create(userRepresentation);
 
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | response STATUS : " + response.getStatus());
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | response INFO : " + response.getStatusInfo());
 
         return response.getStatus();
     }
+
 }

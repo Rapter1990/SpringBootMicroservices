@@ -10,18 +10,26 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KeycloakConfig {
 
+    static Keycloak keycloak = null;
+    public final static String serverUrl = "http://localhost:8181/auth";
+    public final static String realm = "my-realm-client";
+    public final static String clientId = "spring-boot-microservice-keycloak";
+    public final static String clientSecret = "o7qglfZy50do87iFJmIy2lA0w4zo53ro";
+    final static String userName = "admin";
+    final static String password = "admin";
+
     @Bean
     public KeycloakConfigResolver keycloakConfigResolver(){
         return new KeycloakSpringBootConfigResolver();
     }
 
     @Bean
-    public Keycloak keycloak(@Value("http://localhost:8181/auth") String url){
-        return Keycloak.getInstance(url,
-                "my-realm-client",
-                "springbootmicroserviceuser",
-                "user123456",
-                "spring-boot-microservice-keycloak",
-                "o7qglfZy50do87iFJmIy2lA0w4zo53ro");
+    public Keycloak keycloak(){
+        return Keycloak.getInstance(serverUrl,
+                realm,
+                userName,
+                password,
+                clientId,
+                clientSecret);
     }
 }
