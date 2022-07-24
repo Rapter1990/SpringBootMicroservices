@@ -6,6 +6,10 @@
 
     <modules>
         <module>discoveryserver</module>
+        <module>api-gateway</module>
+        <module>advertisement-service</module>
+        <module>management-service</module>
+        <module>user-service</module>
     </modules>
 
     <parent>

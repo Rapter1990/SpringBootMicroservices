@@ -34,6 +34,8 @@
         <option value="$PROJECT_DIR$/discoveryserver/pom.xml" />
         <option value="$PROJECT_DIR$/user-service/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/advertisement-service/pom.xml" />
+        <option value="$PROJECT_DIR$/management-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
