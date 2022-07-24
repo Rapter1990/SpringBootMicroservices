@@ -72,20 +72,26 @@ public class UserController {
         AccessToken accessToken = session.getToken();
 
         String username = accessToken.getPreferredUsername();
-
-        LOGGER.info("UserController | infoUser | username : " + username);
-
-        String emailID = accessToken.getEmail();
+        String email = accessToken.getEmail();
         String lastname = accessToken.getFamilyName();
         String firstname = accessToken.getGivenName();
         String realmName = accessToken.getIssuer();
         AccessToken.Access access = accessToken.getRealmAccess();
         Set<String> roles = access.getRoles();
-        String firstRole = roles.stream().findFirst().get();
 
-        LOGGER.info("UserController | infoUser | firstRole : " + firstRole);
+        String role = roles.stream()
+                .filter(s -> s.equals("ROLE_USER") || s.equals("ROLE_ADMIN"))
+                .findAny()
+                .orElse("noElement");
 
-        return ResponseEntity.ok(firstRole);
+        LOGGER.info("UserController | infoUser | username : " + username);
+        LOGGER.info("UserController | infoUser | email : " + email);
+        LOGGER.info("UserController | infoUser | lastname : " + lastname);
+        LOGGER.info("UserController | infoUser | firstname : " + firstname);
+        LOGGER.info("UserController | infoUser | realmName : " + realmName);
+        LOGGER.info("UserController | infoUser | firstRole : " + role);
+
+        return ResponseEntity.ok(role);
     }
 
 }
