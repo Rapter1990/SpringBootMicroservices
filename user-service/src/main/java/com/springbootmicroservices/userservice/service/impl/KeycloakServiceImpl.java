@@ -24,7 +24,7 @@ public class KeycloakServiceImpl implements KeycloakService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private String realm = "Client";
+    private String realm = "my-realm-client";
 
     private final Keycloak keycloak;
 
@@ -50,9 +50,9 @@ public class KeycloakServiceImpl implements KeycloakService {
 
         return KeycloakBuilder.builder()
                 .realm(realm)
-                .serverUrl("http://localhost:8080/auth")
+                .serverUrl("http://localhost:8181/auth")
                 .clientId("spring-boot-microservice-keycloak")
-                .clientSecret("oRMX1tNoNdmkSb9ppMGRiOcGSeOaa1Rb")
+                .clientSecret("o7qglfZy50do87iFJmIy2lA0w4zo53ro")
                 .username(username)
                 .password(password)
                 .build();

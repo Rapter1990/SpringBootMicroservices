@@ -16,9 +16,12 @@ public class KeycloakConfig {
     }
 
     @Bean
-    public Keycloak keycloak(@Value("http://localhost:8080/auth") String url){
-        return Keycloak.getInstance(url,"Client","springbootmicroserviceuser","user123456",
+    public Keycloak keycloak(@Value("http://localhost:8181/auth") String url){
+        return Keycloak.getInstance(url,
+                "my-realm-client",
+                "springbootmicroserviceuser",
+                "user123456",
                 "spring-boot-microservice-keycloak",
-                "oRMX1tNoNdmkSb9ppMGRiOcGSeOaa1Rb");
+                "o7qglfZy50do87iFJmIy2lA0w4zo53ro");
     }
 }
