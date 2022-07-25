@@ -4,6 +4,7 @@ import com.springbootmicroservices.userservice.config.KeycloakConfig;
 import com.springbootmicroservices.userservice.dto.KeycloakUser;
 import com.springbootmicroservices.userservice.dto.LoginRequest;
 import com.springbootmicroservices.userservice.service.KeycloakService;
+import org.apache.commons.lang.ArrayUtils;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
@@ -99,14 +100,18 @@ public class KeycloakServiceImpl implements KeycloakService {
 
         List<RoleRepresentation> rolesOfUserActualNew = usersResource.get(userId).roles().realmLevel().listAll();
 
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | rolesOfUserActualNew : " + ArrayUtils.toString(rolesOfUserActualNew));
+
         RoleRepresentation roleRep = new  RoleRepresentation();
         roleRep.setName(keycloakUser.getRole());
         rolesOfUserActualNew.add(roleRep);
 
-        usersResource.get(userId).roles().realmLevel().add(rolesOfUserActualNew);
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | role : " + keycloakUser.getRole());
 
+        usersResource.get(userId).roles().clientLevel(KeycloakConfig.clientId).add(rolesOfUserActualNew);
 
         return response.getStatus();
+
     }
 
 }
