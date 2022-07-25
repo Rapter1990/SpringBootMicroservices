@@ -1,4 +1,4 @@
-package com.springbootmicroservices.management.model;
+package com.springbootmicroservices.report.entity;
 
 import lombok.Getter;
 import lombok.Setter;

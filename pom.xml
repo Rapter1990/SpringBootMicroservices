@@ -10,6 +10,7 @@
         <module>advertisement-service</module>
         <module>management-service</module>
         <module>user-service</module>
+        <module>report-service</module>
     </modules>
 
     <parent>
