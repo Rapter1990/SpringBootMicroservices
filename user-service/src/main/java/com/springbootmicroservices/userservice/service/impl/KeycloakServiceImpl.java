@@ -4,10 +4,13 @@ import com.springbootmicroservices.userservice.config.KeycloakConfig;
 import com.springbootmicroservices.userservice.dto.KeycloakUser;
 import com.springbootmicroservices.userservice.dto.LoginRequest;
 import com.springbootmicroservices.userservice.service.KeycloakService;
+import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,11 +85,26 @@ public class KeycloakServiceImpl implements KeycloakService {
 
         userRepresentation.setCredentials(Collections.singletonList(credentialRepresentation));
 
+        UsersResource usersResource = keycloak.realm(KeycloakConfig.realm).users();
 
-        Response response = keycloak.realm(KeycloakConfig.realm).users().create(userRepresentation);
+        // Create user (requires manage-users role)
+        Response response = usersResource.create(userRepresentation);
 
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | Create User : ");
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | response STATUS : " + response.getStatus());
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | response INFO : " + response.getStatusInfo());
+
+        String userId = CreatedResponseUtil.getCreatedId(response);
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | userId : " + userId);
+
+        List<RoleRepresentation> rolesOfUserActualNew = usersResource.get(userId).roles().realmLevel().listAll();
+
+        RoleRepresentation roleRep = new  RoleRepresentation();
+        roleRep.setName(keycloakUser.getRole());
+        rolesOfUserActualNew.add(roleRep);
+
+        usersResource.get(userId).roles().realmLevel().add(rolesOfUserActualNew);
+
 
         return response.getStatus();
     }

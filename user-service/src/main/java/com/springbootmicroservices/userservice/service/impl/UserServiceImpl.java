@@ -36,17 +36,23 @@ public class UserServiceImpl implements UserService {
         keycloakUser.setEmail(signUpRequest.getEmail());
         keycloakUser.setPassword(signUpRequest.getPassword());
         keycloakUser.setRole(signUpRequest.getRole());
+        keycloakUser.setUsername(signUpRequest.getUsername());
 
         int status = keycloakService.createUserWithKeycloak(keycloakUser);
 
-        LOGGER.info("UserServiceImpl | signUpUser | status : " + status);
+        if(status == 201){
 
-        User signUpUser = UserMapper.signUpRequestToUser(signUpRequest);
+            LOGGER.info("UserServiceImpl | signUpUser | status : " + status);
 
-        signUpUser.setCreatedAt(LocalDateTime.now());
+            User signUpUser = UserMapper.signUpRequestToUser(signUpRequest);
 
-        userRepository.save(signUpUser);
+            signUpUser.setCreatedAt(LocalDateTime.now());
 
-        return "Sign In";
+            userRepository.save(signUpUser);
+
+            return "Sign In";
+        }
+
+        return "Not Register";
     }
 }
