@@ -1,6 +1,7 @@
 package com.springbootmicroservices.management.controller;
 
 import com.springbootmicroservices.management.model.Advertisement;
+import com.springbootmicroservices.management.model.AdvertisementState;
 import com.springbootmicroservices.management.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -27,8 +28,18 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllAdvertisements());
     }
 
-    @GetMapping("/advertisement/{advertiseId}")
-    public ResponseEntity<Advertisement> getAdvertisementById(@PathVariable String advertisementId){
-        return userService.getAdvertisementById(advertisementId);
+    @GetMapping("/advertisement/{advertisementId}")
+    public ResponseEntity<?> getAdvertisementById(@PathVariable String advertisementId){
+
+        ResponseEntity<Advertisement> advertisementResponseEntity = userService.getAdvertisementById(advertisementId);
+
+        Advertisement advertisement = advertisementResponseEntity.getBody();
+
+        if(advertisement.getState() == AdvertisementState.APPROVED){
+            return userService.getAdvertisementById(advertisementId);
+        }else{
+            return ResponseEntity.ok("Advertisement Not Found");
+        }
+
     }
 }

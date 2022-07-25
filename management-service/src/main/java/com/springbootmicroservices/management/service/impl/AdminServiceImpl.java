@@ -78,7 +78,7 @@ public class AdminServiceImpl implements AdminService {
         if(result.equals("ROLE_ADMIN")){
             ResponseEntity<Advertisement[]> restExchange =
                     restTemplate.getForEntity(
-                            BASE_URL,
+                            BASE_URL + "/alladvertisements",
                             Advertisement[].class
                     );
 
