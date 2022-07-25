@@ -27,7 +27,7 @@ public class UserAdvertisementController {
         return ResponseEntity.ok(advertiseService.getAllAdvertisements());
     }
 
-    @GetMapping("/advertisement/{advertiseId}")
+    @GetMapping("/advertisement/{advertisementId}")
     public ResponseEntity<Advertisement> getAdvertisementById(@PathVariable String advertisementId){
         return ResponseEntity.ok(advertiseService.getAdvertisementById(advertisementId));
     }

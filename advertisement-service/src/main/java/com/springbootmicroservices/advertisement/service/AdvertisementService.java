@@ -15,5 +15,7 @@ public interface AdvertisementService {
 
     List<Advertisement> getAllAdvertisements();
 
+    List<Advertisement> getAllAdvertisementsForAdmin();
+
     Advertisement getAdvertisementById(String advertisementId);
 }

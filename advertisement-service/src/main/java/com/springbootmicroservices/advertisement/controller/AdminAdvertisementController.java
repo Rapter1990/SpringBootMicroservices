@@ -43,7 +43,7 @@ public class AdminAdvertisementController {
 
     @GetMapping("/alladvertisements")
     public ResponseEntity<List<Advertisement>> getAllAdvertisements(){
-        return ResponseEntity.ok(advertiseService.getAllAdvertisements());
+        return ResponseEntity.ok(advertiseService.getAllAdvertisementsForAdmin());
     }
 
     @GetMapping("/advertisement/{advertisementId}")

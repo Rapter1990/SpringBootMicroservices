@@ -60,8 +60,17 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public List<Advertisement> getAllAdvertisements() {
         List<Advertisement> advertiseList = advertisementRepository.findAll();
-        advertiseList.stream().forEach(
+
+        advertiseList.stream().filter(advertisement-> advertisement.getState() == AdvertisementState.APPROVED).forEach(
                 advertisement -> advertisement.setViewCount(advertisement.getViewCount()+1));
+
+        return advertiseList;
+    }
+
+    @Override
+    public List<Advertisement> getAllAdvertisementsForAdmin() {
+        List<Advertisement> advertiseList = advertisementRepository.findAll();
+
         return advertiseList;
     }
 
