@@ -8,6 +8,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.CredentialRepresentation;
@@ -98,7 +99,9 @@ public class KeycloakServiceImpl implements KeycloakService {
         String userId = CreatedResponseUtil.getCreatedId(response);
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | userId : " + userId);
 
-        List<RoleRepresentation> rolesOfUserActualNew = usersResource.get(userId).roles().realmLevel().listAll();
+        UserResource userResource = usersResource.get(userId);
+
+        List<RoleRepresentation> rolesOfUserActualNew = userResource.roles().realmLevel().listAll();
 
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | rolesOfUserActualNew : " + ArrayUtils.toString(rolesOfUserActualNew));
 
@@ -108,7 +111,7 @@ public class KeycloakServiceImpl implements KeycloakService {
 
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | role : " + keycloakUser.getRole());
 
-        usersResource.get(userId).roles().clientLevel(KeycloakConfig.clientId).add(rolesOfUserActualNew);
+        userResource.roles().clientLevel(KeycloakConfig.clientId).add(rolesOfUserActualNew);
 
         return response.getStatus();
 
