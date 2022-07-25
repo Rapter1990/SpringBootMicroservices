@@ -24,11 +24,21 @@ public class UserAdvertisementController {
 
     @GetMapping("/alladvertisements")
     public ResponseEntity<List<Advertisement>> getAllAdvertisements(){
+
+        LOGGER.info("UserAdvertisementController | getAllAdvertisements is started");
+
+        LOGGER.info("UserAdvertisementController | getAllAdvertisements size : " + advertiseService.getAllAdvertisements().size());
+
         return ResponseEntity.ok(advertiseService.getAllAdvertisements());
     }
 
     @GetMapping("/advertisement/{advertisementId}")
     public ResponseEntity<Advertisement> getAdvertisementById(@PathVariable String advertisementId){
+
+        LOGGER.info("UserAdvertisementController | getAdvertisementById is started");
+
+        LOGGER.info("UserAdvertisementController | getAdvertisementById | advertisementId :  " + advertisementId);
+
         return ResponseEntity.ok(advertiseService.getAdvertisementById(advertisementId));
     }
 }

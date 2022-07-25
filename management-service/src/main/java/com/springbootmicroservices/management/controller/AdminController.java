@@ -24,21 +24,36 @@ public class AdminController {
 
     @PostMapping("/create/{userId}")
     @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
-    public ResponseEntity<?> createAdvertise(@RequestBody AdvertisementRequest advertisementRequest, @PathVariable String userId){
+    public ResponseEntity<?> createAdvertisement(@RequestBody AdvertisementRequest advertisementRequest, @PathVariable String userId){
+
+        LOGGER.info("AdminController | createAdvertisement is started");
+
+        LOGGER.info("AdminController | createAdvertisement | userId : " + userId);
+
         adminService.createAdvertisement(advertisementRequest,userId);
         return ResponseEntity.status(HttpStatus.CREATED).body("Advertisement Created");
     }
 
     @PutMapping("/update/{advertisementId}")
     @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
-    public ResponseEntity<?> updateAdvertise(@RequestBody AdvertisementRequest advertisementRequest ,@PathVariable String advertisementId){
+    public ResponseEntity<?> updateAdvertisement(@RequestBody AdvertisementRequest advertisementRequest ,@PathVariable String advertisementId){
+
+        LOGGER.info("AdminController | updateAdvertisement is started");
+
+        LOGGER.info("AdminController | updateAdvertisement | advertisementId : " + advertisementId);
+
         adminService.updateAdvertisement(advertisementRequest,advertisementId);
         return ResponseEntity.status(HttpStatus.OK).body("Advertisement Updated");
     }
 
     @DeleteMapping("/delete/{advertisementId}")
     @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
-    public ResponseEntity<?> deleteAdvertise(@PathVariable String advertisementId){
+    public ResponseEntity<?> deleteAdvertisement(@PathVariable String advertisementId){
+
+        LOGGER.info("AdminController | deleteAdvertisement is started");
+
+        LOGGER.info("AdminController | deleteAdvertisement | advertisementId : " + advertisementId);
+
         adminService.deleteAdvertisement(advertisementId);
         return ResponseEntity.status(HttpStatus.OK).body("Advertisement Deleted");
     }
@@ -46,28 +61,50 @@ public class AdminController {
     @GetMapping("/alladvertisements")
     @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
     public ResponseEntity<List<Advertisement>> getAllAdvertisements(){
+
+        LOGGER.info("AdminController | getAllAdvertisements is started");
+
         return ResponseEntity.ok(adminService.getAllAdvertisements());
     }
 
     @GetMapping("/advertisement/{advertisementId}")
     @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
     public ResponseEntity<Advertisement> getAdvertisementById(@PathVariable String advertisementId){
+
+        LOGGER.info("AdminController | getAdvertisementById is started");
+
+        LOGGER.info("AdminController | getAdvertisementById | advertisementId : " + advertisementId);
+
         return adminService.getAdvertisementById(advertisementId);
     }
 
     @GetMapping("/advertisement/{advertisementId}/approve")
     @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
-    public ResponseEntity<?> approveAdvertise(@PathVariable String advertisementId){
+    public ResponseEntity<?> approveAdvertisement(@PathVariable String advertisementId){
+
+        LOGGER.info("AdminController | getAdvertisementById is started");
+
+        LOGGER.info("AdminController | getAdvertisementById | advertisementId : " + advertisementId);
+
         return adminService.approveAdvertisement(advertisementId);
     }
 
     @GetMapping("/advertisement/{advertisementId}/reject")
     @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
-    public ResponseEntity<?> rejectAdvertise(@PathVariable String advertisementId){
+    public ResponseEntity<?> rejectAdvertisement(@PathVariable String advertisementId){
+
+        LOGGER.info("AdminController | rejectAdvertisement is started");
+
+        LOGGER.info("AdminController | rejectAdvertisement | advertisementId : " + advertisementId);
+
         return adminService.rejectAdvertisement(advertisementId);
     }
 
     public ResponseEntity<?> managementFallback(Exception e) {
+
+        LOGGER.info("AdminController | managementFallback is started");
+
+        LOGGER.info("AdminController | managementFallback | error : " + "CircuitBreaker Works! Error : " + e.getMessage());
 
         return new ResponseEntity<String>(
                 "CircuitBreaker Works! Error : " + e.getMessage(),

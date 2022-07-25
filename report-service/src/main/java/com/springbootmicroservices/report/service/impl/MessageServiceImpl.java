@@ -5,6 +5,8 @@ import com.springbootmicroservices.report.entity.Report;
 import com.springbootmicroservices.report.service.MessageService;
 import com.springbootmicroservices.report.service.ReportService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +16,17 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
     private final ReportService reportService;
 
     @RabbitListener(queues = "${queue.name}")
     @Override
     public void receiveMessage(AdvertisementDto advertisementDto) {
+
+        LOGGER.info("MessageServiceImpl | receiveMessage is started");
+
+        LOGGER.info("MessageServiceImpl | receiveMessage | Report is creating");
 
         reportService.createReport(advertisementDto);
     }

@@ -25,19 +25,29 @@ public class UserController {
 
     @GetMapping("/alladvertisements")
     public ResponseEntity<List<Advertisement>> getAllAdvertisements(){
+
+        LOGGER.info("UserController | getAllAdvertisements is started");
+
         return ResponseEntity.ok(userService.getAllAdvertisements());
     }
 
     @GetMapping("/advertisement/{advertisementId}")
     public ResponseEntity<?> getAdvertisementById(@PathVariable String advertisementId){
 
+        LOGGER.info("UserController | getAdvertisementById is started");
+
+        LOGGER.info("UserController | getAdvertisementById | advertisementId :  " + advertisementId);
+
         ResponseEntity<Advertisement> advertisementResponseEntity = userService.getAdvertisementById(advertisementId);
 
         Advertisement advertisement = advertisementResponseEntity.getBody();
 
+        LOGGER.info("UserController | getAdvertisementById | advertisement state :  " + advertisement.getState());
+
         if(advertisement.getState() == AdvertisementState.APPROVED){
             return userService.getAdvertisementById(advertisementId);
         }else{
+            LOGGER.info("UserController | getAdvertisementById | Advertisement Not Found ");
             return ResponseEntity.ok("Advertisement Not Found");
         }
 
