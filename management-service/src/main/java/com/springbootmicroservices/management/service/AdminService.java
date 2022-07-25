@@ -16,7 +16,7 @@ public interface AdminService {
 
     List<Advertisement> getAllAdvertisements();
 
-    ResponseEntity<?> getAdvertisementById(String advertisementId);
+    ResponseEntity<Advertisement> getAdvertisementById(String advertisementId);
 
     ResponseEntity<?> approveAdvertisement(String advertisementId);
 

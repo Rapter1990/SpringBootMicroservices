@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="user-service" />
-        <module name="advertisement-service" />
-        <module name="api-gateway" />
         <module name="discoveryserver" />
         <module name="management-service" />
+        <module name="report-service" />
+        <module name="advertisement-service" />
+        <module name="user-service" />
+        <module name="api-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +26,7 @@
       <module name="discovery-server" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="management-service" options="-parameters" />
+      <module name="report-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>

@@ -4,16 +4,13 @@ import com.springbootmicroservices.management.dto.AdvertisementRequest;
 import com.springbootmicroservices.management.model.Advertisement;
 import com.springbootmicroservices.management.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 
@@ -44,14 +41,16 @@ public class AdminServiceImpl implements AdminService {
         String result = getRoleInfo();
 
         if(result.equals("ROLE_ADMIN")){
+            /*Map< String, String > params = new HashMap< >();
+            params.put("id", advertisementId);
+            restTemplate.put(BASE_URL + "/update/"+ advertisementId, advertisementRequest, params);
+            return new ResponseEntity("Advertisement Updated with id " + advertisementId, HttpStatus.OK);*/
 
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            HttpEntity < AdvertisementRequest > entity = new HttpEntity<>(advertisementRequest, httpHeaders);
+            return restTemplate.exchange(BASE_URL + "/update/"+ advertisementId, HttpMethod.PUT, entity, String.class);
         }
-
-        /*return restTemplate.exchange(
-                BASE_URL + "/update/"+ advertisementId,
-                HttpMethod.PUT,
-                advertisementRequest,
-                String.class)*/
 
         return null;
     }
@@ -62,11 +61,11 @@ public class AdminServiceImpl implements AdminService {
         String result = getRoleInfo();
 
         if(result.equals("ROLE_ADMIN")){
-
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            HttpEntity < String > entity = new HttpEntity < > (httpHeaders);
+            return restTemplate.exchange(BASE_URL + "/delete/" + advertisementId, HttpMethod.DELETE, entity, String.class);
         }
-
-        /*return restTemplate.exchange(
-                BASE_URL + "/delete/{advertisementId}", HttpMethod.DELETE, entity, String.class).getBody();*/
 
         return null;
     }
@@ -94,13 +93,14 @@ public class AdminServiceImpl implements AdminService {
 
         String result = getRoleInfo();
 
-        if(result.equals("ROLE_ADMIN")){
+        if(result.equals("ROLE_USER")){
             return restTemplate.getForEntity(
                     BASE_URL + "/advertisement/{advertisementId}",
                     Advertisement.class,
                     advertisementId
             );
         }
+
         return null;
     }
 

@@ -1,34 +1,44 @@
 services:
 
-  database:
-    container_name: mysql-database
-    image: 'mysql:latest'
-    ports:
-      - "3366:3306"
-    restart: always
-    environment:
-      MYSQL_DATABASE: "springbootuser"
-      MYSQL_USER: "springmicroserviceuser"
-      MYSQL_PASSWORD: "111111"
-      MYSQL_ROOT_PASSWORD: "111111"
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      backend:
-        aliases:
-          - "database"
+  #database:
+  #  container_name: mysql-database
+  #  image: 'mysql:latest'
+  #  ports:
+  #    - "3366:3306"
+  #  restart: always
+  #  environment:
+  #    MYSQL_DATABASE: "springbootuser"
+  #    MYSQL_USER: "springmicroserviceuser"
+  #    MYSQL_PASSWORD: "111111"
+  #    MYSQL_ROOT_PASSWORD: "111111"
+  #  volumes:
+  #    - db-data:/var/lib/mysql
+  #  networks:
+  #    backend:
+  #      aliases:
+  #        - "database"
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:18.0.2
+  #keycloak:
+  #  image: quay.io/keycloak/keycloak:18.0.2
+  #  environment:
+  #    KEYCLOAK_USER: admin
+  #    KEYCLOAK_ADMIN_PASSWORD: admin
+  #  ports:
+  #    - "8181:8080"
+  #  networks:
+  #    backend:
+  #      aliases:
+  #        - "keycloak"
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "rmq3"
     environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "123456"
     ports:
-      - "8181:8080"
-    networks:
-      backend:
-        aliases:
-          - "keycloak"
+      - "5672:5672"
+      - "15672:15672"
 
 networks:
   backend:

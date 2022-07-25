@@ -29,7 +29,6 @@ public class UserController {
 
     @GetMapping("/advertisement/{advertiseId}")
     public ResponseEntity<Advertisement> getAdvertisementById(@PathVariable String advertisementId){
-        //return ResponseEntity.ok(userService.getAdvertisementById(advertisementId));
-        return null;
+        return userService.getAdvertisementById(advertisementId);
     }
 }
