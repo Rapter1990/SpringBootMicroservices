@@ -44,14 +44,12 @@ public class UserServiceImpl implements UserService {
         String result = getRoleInfo();
 
         if(result.equals("ROLE_USER")){
-
+            return restTemplate.getForEntity(
+                    ADVERTISEMENT_BASE_URL + "/advertisement/{advertisementId}",
+                    Advertisement.class,
+                    advertisementId
+            );
         }
-
-        /*return restTemplate.getForEntity(
-                BASE_URL + "/advertisement/{advertisementId}",
-                String.class,
-                advertisementId
-        );*/
 
         return null;
     }

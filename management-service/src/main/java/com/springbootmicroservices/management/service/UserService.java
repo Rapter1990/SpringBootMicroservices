@@ -9,5 +9,5 @@ public interface UserService {
 
     List<Advertisement> getAllAdvertisements();
 
-    ResponseEntity<?> getAdvertisementById(String advertisementId);
+    ResponseEntity<Advertisement> getAdvertisementById(String advertisementId);
 }

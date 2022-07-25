@@ -4,16 +4,13 @@ import com.springbootmicroservices.management.dto.AdvertisementRequest;
 import com.springbootmicroservices.management.model.Advertisement;
 import com.springbootmicroservices.management.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -52,9 +49,9 @@ public class AdminServiceImpl implements AdminService {
 
         /*return restTemplate.exchange(
                 BASE_URL + "/update/"+ advertisementId,
-                HttpMethod.DELETE,
+                HttpMethod.PUT,
                 advertisementRequest,
-                String.class).getBody();*/
+                String.class)*/
 
         return null;
     }
@@ -98,14 +95,12 @@ public class AdminServiceImpl implements AdminService {
         String result = getRoleInfo();
 
         if(result.equals("ROLE_ADMIN")){
-
+            return restTemplate.getForEntity(
+                    BASE_URL + "/advertisement/{advertisementId}",
+                    Advertisement.class,
+                    advertisementId
+            );
         }
-
-        /*return restTemplate.getForEntity(
-                BASE_URL + "/advertisement/{advertisementId}",
-                String.class,
-                advertisementId
-        );*/
         return null;
     }
 
