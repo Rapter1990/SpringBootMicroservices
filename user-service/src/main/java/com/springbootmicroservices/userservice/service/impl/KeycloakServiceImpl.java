@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -99,19 +100,13 @@ public class KeycloakServiceImpl implements KeycloakService {
         String userId = CreatedResponseUtil.getCreatedId(response);
         LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | userId : " + userId);
 
-        UserResource userResource = usersResource.get(userId);
+        RoleRepresentation savedRoleRepresentation = keycloak.realm(KeycloakConfig.realm).roles()
+                .get(keycloakUser.getRole()).toRepresentation();
 
-        List<RoleRepresentation> rolesOfUserActualNew = userResource.roles().realmLevel().listAll();
+        keycloak.realm(KeycloakConfig.realm).users().get(userId).roles().realmLevel()
+                .add(Arrays.asList(savedRoleRepresentation));
 
-        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | rolesOfUserActualNew : " + ArrayUtils.toString(rolesOfUserActualNew));
-
-        RoleRepresentation roleRep = new  RoleRepresentation();
-        roleRep.setName(keycloakUser.getRole());
-        rolesOfUserActualNew.add(roleRep);
-
-        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | role : " + keycloakUser.getRole());
-
-        userResource.roles().clientLevel(KeycloakConfig.clientId).add(rolesOfUserActualNew);
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | Added Role to User");
 
         return response.getStatus();
 
