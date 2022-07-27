@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "b11d9e05-89be-4fc8-a31f-3dafe0ac4da0",
+		"name": "Spring Boot Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Service | Sign Up User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceuser\",\r\n    \"password\" : \"user123456\",\r\n    \"name\" : \"Micro User\",\r\n    \"surname\" : \"User Surname\",\r\n    \"phoneNumber\" : \"123456789\",\r\n    \"email\" : \"springbootmicroserviceuser@user.com\",\r\n    \"role\" : \"ROLE_USER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Service | Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceuser\",\r\n    \"password\" : \"user123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Service | Sign Up Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceadmin\",\r\n    \"password\" : \"admin123456\",\r\n    \"name\" : \"Micro Admin\",\r\n    \"surname\" : \"Admin Surname\",\r\n    \"phoneNumber\" : \"123456789\",\r\n    \"email\" : \"springbootmicroserviceadmin@admin.com\",\r\n    \"role\" : \"ROLE_ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Service | Login Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceadmin\",\r\n    \"password\" : \"admin123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Service | User Info",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "queryParams",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "springbootmicroserviceuser",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaMGlhcHUyWkNLUWdxb0hvcDQ0c21mYi1YQXBWOHJrdGVRcURMdXpTZWpNIn0.eyJleHAiOjE2NTg1ODgzOTAsImlhdCI6MTY1ODU4ODA5MCwianRpIjoiMGU3YWM3NjUtZDVmOC00NWFkLWIyYjktMTQwY2ZmMTU2MTE0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9DbGllbnQiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYjE2ZGYwZTEtNWNjZS00ZDAxLWEzZDEtYzQwN2U1ZmQ5OTEwIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6IjE4ZWZkOTA1LTY2MGYtNDI3ZC1hZjk0LTg5YTRiMDlkMjZmNCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNsaWVudCIsIlJPTEVfVVNFUiIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwic2lkIjoiMThlZmQ5MDUtNjYwZi00MjdkLWFmOTQtODlhNGIwOWQyNmY0IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gVXNlciIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ21pY3JvdXNlciIsImdpdmVuX25hbWUiOiJNaWNybyIsImZhbWlseV9uYW1lIjoiVXNlciIsImVtYWlsIjoic3ByaW5nbWljcm91c2VyQG1pY3JvLmNvbSJ9.AIiZGuy41Wl1yKv7-2f29QK8xfz-UEZtODb5JQZmb4NgxzhVMqeeScqJgmQgU9_VVhc_2iylaAkzfFvHieuU2aqqk3u9o02P8qTQuMH9fVvb6WMlr5jbL0z_6nITOY2p7Wqv1AmSET0sBMYHnJSZHM7D1dXEjqKA1gXVR-1OtJoYyRYJuTieiKp_QF1KOpcXaW1exPFKoaQ3SUwBuV-5Su75SJHMYgPHxPycgihSnIqzAKHYzF9RN9ag_lRi5liw0NDUMEU6aGkYy7z0bErybgTch2_UMPWukrEgiRMl9NhhIB8AMgNvwa9NSCrxXjF5xEXeYpj4pETFcrry9XNJyw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/api/v1/users/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | Admin | Create Advs for User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Advertisement 1 for User 1\",\r\n    \"price\" : 200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/v1/admin_role/create/8d298f76-9f08-4282-92c9-3a035fff614b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"create",
+						"8d298f76-9f08-4282-92c9-3a035fff614b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | Admin | Get All Advs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/v1/admin_role/alladvertisements",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"alladvertisements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | Admin | Get Advs By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/v1/admin_role/alladvertisements/advertisement/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"alladvertisements",
+						"advertisement",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | Admin | Update Advs By Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Advertisement 1 for User 1 Updated\",\r\n    \"price\" : 300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/v1/admin_role/alladvertisements/update/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"alladvertisements",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | Admin | Delete Advs By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/v1/admin_role/alladvertisements/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"alladvertisements",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | Admin | Approve Advs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/v1/admin_role/advertisement/1/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"advertisement",
+						"1",
+						"approve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | Admin | Reject Advs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/v1/admin_role/advertisement/1/reject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"advertisement",
+						"1",
+						"reject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | User| Get All Advs",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "queryParams",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "springbootmicroserviceuser",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/v1/user_role/alladvertisements",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"user_role",
+						"alladvertisements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management Service | User| Get Adv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9002/api/v1/user_role/advertisement/{advertiseId}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"v1",
+						"user_role",
+						"advertisement",
+						"{advertiseId}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
