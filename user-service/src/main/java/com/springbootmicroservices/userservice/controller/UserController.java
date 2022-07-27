@@ -59,11 +59,15 @@ public class UserController {
 
 
     @GetMapping("/info")
-    public ResponseEntity<?> infoUser(){
+    public ResponseEntity<String> infoUser(){
 
         LOGGER.info("UserController | infoUser is started");
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        LOGGER.info("UserController | infoUser | auth toString : " + auth.toString());
+        LOGGER.info("UserController | infoUser | auth getPrincipal : " + auth.getPrincipal());
+
         KeycloakPrincipal principal = (KeycloakPrincipal)auth.getPrincipal();
         KeycloakSecurityContext session = principal.getKeycloakSecurityContext();
         AccessToken accessToken = session.getToken();
