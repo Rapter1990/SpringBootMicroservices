@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @PutMapping("/update/{advertisementId}")
-    @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
+    @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
     public ResponseEntity<?> updateAdvertisement(@RequestBody AdvertisementRequest advertisementRequest ,@PathVariable String advertisementId){
 
         LOGGER.info("AdminController | updateAdvertisement is started");
@@ -47,7 +47,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{advertisementId}")
-    @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
+    @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
     public ResponseEntity<?> deleteAdvertisement(@PathVariable String advertisementId){
 
         LOGGER.info("AdminController | deleteAdvertisement is started");
@@ -59,7 +59,7 @@ public class AdminController {
     }
 
     @GetMapping("/alladvertisements")
-    @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
+    @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
     public ResponseEntity<List<Advertisement>> getAllAdvertisements(){
 
         LOGGER.info("AdminController | getAllAdvertisements is started");
@@ -67,8 +67,8 @@ public class AdminController {
         return ResponseEntity.ok(adminService.getAllAdvertisements());
     }
 
-    @GetMapping("/advertisement/{advertisementId}")
-    @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
+    @GetMapping("/alladvertisements/{advertisementId}")
+    @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
     public ResponseEntity<Advertisement> getAdvertisementById(@PathVariable String advertisementId){
 
         LOGGER.info("AdminController | getAdvertisementById is started");
@@ -79,7 +79,7 @@ public class AdminController {
     }
 
     @GetMapping("/advertisement/{advertisementId}/approve")
-    @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
+    @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
     public ResponseEntity<?> approveAdvertisement(@PathVariable String advertisementId){
 
         LOGGER.info("AdminController | getAdvertisementById is started");
@@ -90,7 +90,7 @@ public class AdminController {
     }
 
     @GetMapping("/advertisement/{advertisementId}/reject")
-    @CircuitBreaker(name = "management", fallbackMethod = "cardFallback")
+    @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
     public ResponseEntity<?> rejectAdvertisement(@PathVariable String advertisementId){
 
         LOGGER.info("AdminController | rejectAdvertisement is started");

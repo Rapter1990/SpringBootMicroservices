@@ -123,7 +123,7 @@ public class AdminServiceImpl implements AdminService {
 
         LOGGER.info("AdminServiceImpl | getAdvertisementById | role result : " + result);
 
-        if(result.equals("ROLE_USER")){
+        if(result.equals("ROLE_ADMIN")){
             return restTemplate.getForEntity(
                     BASE_URL + "/advertisement/{advertisementId}",
                     Advertisement.class,

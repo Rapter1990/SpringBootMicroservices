@@ -34,9 +34,11 @@ public class UserServiceImpl implements UserService {
         if(result.equals("ROLE_USER")){
             ResponseEntity<Advertisement[]> restExchange =
                     restTemplate.getForEntity(
-                            ADVERTISEMENT_BASE_URL,
+                            ADVERTISEMENT_BASE_URL + "/alladvertisements",
                             Advertisement[].class
                     );
+
+            LOGGER.info("UserServiceImpl | getAllAdvertisements | advertisement list size : " + Arrays.asList(restExchange.getBody().length));
 
             return Arrays.asList(restExchange.getBody());
         }
