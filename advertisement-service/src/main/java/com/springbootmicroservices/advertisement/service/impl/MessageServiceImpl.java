@@ -31,8 +31,13 @@ public class MessageServiceImpl implements MessageService {
         advertisementDto.setTitle(advertisement.getTitle());
         advertisementDto.setViewCount(advertisement.getViewCount());
 
+        LOGGER.info("MessageServiceImpl | sendMessage | | queue name : " + queue.getName());
         LOGGER.info("MessageServiceImpl | sendMessage | Sending message through RabbitMq");
 
-        rabbitTemplate.convertAndSend(queue.getName(),advertisementDto);
+        try {
+            rabbitTemplate.convertAndSend(queue.getName(),advertisementDto);
+        }catch (Exception e){
+            LOGGER.info("MessageServiceImpl | sendMessage | error : " + e.getMessage());
+        }
     }
 }

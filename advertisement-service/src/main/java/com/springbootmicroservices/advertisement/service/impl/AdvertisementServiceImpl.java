@@ -24,64 +24,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     private final AdvertisementRepository advertisementRepository;
 
-    @Override
-    public void createAdvertisement(AdvertisementRequest advertisementRequest, String userId) {
-
-        LOGGER.info("AdvertisementServiceImpl | createAdvertisement is started");
-
-        LOGGER.info("AdvertisementServiceImpl | createAdvertisement | userId : " + userId);
-
-        Advertisement createdAdvertisement = AdvertisementMapper.advertisementRequestToAdvertisement(advertisementRequest);
-        createdAdvertisement.setUserId(Long.valueOf(userId));
-        createdAdvertisement.setViewCount(1L);
-        createdAdvertisement.setState(AdvertisementState.WAITING);
-
-        LOGGER.info("AdvertisementServiceImpl | createAdvertisement | createdAdvertisement state : " + createdAdvertisement.getState().toString());
-
-        advertisementRepository.save(createdAdvertisement);
-    }
-
-    @Override
-    public void updateAdvertisement(AdvertisementRequest advertisementRequest, String advertisementId) {
-
-        LOGGER.info("AdvertisementServiceImpl | updateAdvertisement is started");
-
-        LOGGER.info("AdvertisementServiceImpl | updateAdvertisement | advertisementId : " + advertisementId);
-
-        Optional<Advertisement> optionalAdvertisement = advertisementRepository.findById(Long.valueOf(advertisementId));
-
-        Advertisement updatedAdvertisement = optionalAdvertisement.get();
-
-        LOGGER.info("AdvertisementServiceImpl | updateAdvertisement | updatedAdvertisement title : " + updatedAdvertisement.getTitle());
-
-        if (updatedAdvertisement.getPrice() != advertisementRequest.getPrice()){
-            updatedAdvertisement.setPrice(advertisementRequest.getPrice());
-        }
-        if (updatedAdvertisement.getTitle() != advertisementRequest.getTitle()){
-            updatedAdvertisement.setTitle(advertisementRequest.getTitle());
-        }
-
-        updatedAdvertisement.setState(AdvertisementState.WAITING);
-
-        LOGGER.info("AdvertisementServiceImpl | updateAdvertisement | updatedAdvertisement state : " + updatedAdvertisement.getState().toString());
-
-        advertisementRepository.save(updatedAdvertisement);
-    }
-
-    @Override
-    public void deleteAdvertisement(String advertisementId) {
-
-        LOGGER.info("AdvertisementServiceImpl | deleteAdvertisement is started");
-
-        LOGGER.info("AdvertisementServiceImpl | deleteAdvertisement | advertisementId : " + advertisementId);
-
-        Optional<Advertisement> optionalAdvertisement = advertisementRepository.findById(Long.valueOf(advertisementId));
-        Advertisement deletedAdvertisement = optionalAdvertisement.get();
-
-        LOGGER.info("AdvertisementServiceImpl | deleteAdvertisement | deletedAdvertisement title : " + deletedAdvertisement.getTitle());
-
-        advertisementRepository.delete(deletedAdvertisement);
-    }
 
     @Override
     public List<Advertisement> getAllAdvertisements() {
@@ -94,18 +36,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
         advertiseList.stream().filter(advertisement-> advertisement.getState() == AdvertisementState.APPROVED).forEach(
                 advertisement -> advertisement.setViewCount(advertisement.getViewCount()+1));
-
-        LOGGER.info("AdvertisementServiceImpl | getAllAdvertisements | advertiseList size : " + advertiseList.size());
-
-        return advertiseList;
-    }
-
-    @Override
-    public List<Advertisement> getAllAdvertisementsForAdmin() {
-
-        LOGGER.info("AdvertisementServiceImpl | getAllAdvertisementsForAdmin is started");
-
-        List<Advertisement> advertiseList = advertisementRepository.findAll();
 
         LOGGER.info("AdvertisementServiceImpl | getAllAdvertisements | advertiseList size : " + advertiseList.size());
 

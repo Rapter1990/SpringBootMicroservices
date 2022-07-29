@@ -3,7 +3,6 @@ package com.springbootmicroservices.advertisement.controller;
 import com.springbootmicroservices.advertisement.dto.AdvertisementRequest;
 import com.springbootmicroservices.advertisement.entity.Advertisement;
 import com.springbootmicroservices.advertisement.service.AdminService;
-import com.springbootmicroservices.advertisement.service.AdvertisementService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,7 @@ public class AdminAdvertisementController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-    private final AdvertisementService advertiseService;
+    //private final AdvertisementService advertiseService;
     private final AdminService adminService;
 
     @PostMapping("/create/{userId}")
@@ -28,7 +27,7 @@ public class AdminAdvertisementController {
 
         LOGGER.info("AdminAdvertisementController | createAdvertisement is started");
 
-        advertiseService.createAdvertisement(advertisementRequest,userId);
+        adminService.createAdvertisement(advertisementRequest,userId);
 
         LOGGER.info("AdminAdvertisementController | createAdvertisement | Advertisement Created");
 
@@ -42,7 +41,7 @@ public class AdminAdvertisementController {
 
         LOGGER.info("AdminAdvertisementController | updateAdvertisement | advertisementId : " + advertisementId);
 
-        advertiseService.updateAdvertisement(advertisementRequest,advertisementId);
+        adminService.updateAdvertisement(advertisementRequest,advertisementId);
 
         LOGGER.info("AdminAdvertisementController | createAdvertisement | Advertisement Created");
 
@@ -56,7 +55,7 @@ public class AdminAdvertisementController {
 
         LOGGER.info("AdminAdvertisementController | updateAdvertisement | advertisementId : " + advertisementId);
 
-        advertiseService.deleteAdvertisement(advertisementId);
+        adminService.deleteAdvertisement(advertisementId);
 
         LOGGER.info("AdminAdvertisementController | createAdvertisement | Advertisement Deleted");
 
@@ -68,7 +67,7 @@ public class AdminAdvertisementController {
 
         LOGGER.info("AdminAdvertisementController | getAllAdvertisements is started");
 
-        return ResponseEntity.ok(advertiseService.getAllAdvertisementsForAdmin());
+        return ResponseEntity.ok(adminService.getAllAdvertisementsForAdmin());
     }
 
     @GetMapping("/advertisement/{advertisementId}")
@@ -78,7 +77,7 @@ public class AdminAdvertisementController {
 
         LOGGER.info("AdminAdvertisementController | getAdvertisementById | getAdvertisementById " + advertisementId);
 
-        return ResponseEntity.ok(advertiseService.getAdvertisementById(advertisementId));
+        return ResponseEntity.ok(adminService.getAdvertisementByIdForAdmin(advertisementId));
     }
 
     @GetMapping("/advertisement/{advertisementId}/approve")
