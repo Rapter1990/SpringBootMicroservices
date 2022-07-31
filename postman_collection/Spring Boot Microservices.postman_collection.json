@@ -217,6 +217,16 @@
 		{
 			"name": "Management Service | Admin | Create Advs for User",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSNnByQ3NaaERPRmFpSTAtUzZXb3RrZDZ5SlhTOEJQc3hZaVB6b3RaX05ZIn0.eyJleHAiOjE2NTkwMzk5MDksImlhdCI6MTY1OTAzOTg0OSwianRpIjoiNGEyMDBiZTktODViYS00Nzg4LWE5NmItN2FlMTdlZTBkNGRhIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTJjMjZmNzItZGE1NS00ZjA2LTg5OGUtOWFhYWNiZDg1YTg0IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6IjQwZDcwNGQ4LTljOGMtNDI1MC05NTQ0LTMzM2VlODk0ZjIzMiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNDBkNzA0ZDgtOWM4Yy00MjUwLTk1NDQtMzMzZWU4OTRmMjMyIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.F_icsqDsPPDR7hBve54eXBqV33ybwD7Hk76bb-smOVYE2phpsfyGwXF0sDxDSNpJzQaIXPUe6wt8qvlgRVwdUw0HP38je3tOgUnbN67XDiIC0j0c5OR5ZJdQ_IWaMcuxOkd7Rvb5FG-01tSkq23AI0wTfns2rBzBk3DKlxavoHtyjcBSEs9u1n0f40Qjm214eLKq6UH7QfaFqy6kfFjrKVepyRe09-uHU67Mz_8dPxuK4vs7GH0XKyU2-0NnUdHXiLLlR5D_ECvpTXCVMXbE27Iy3VqPSzdj1ApFbBoQRlwvOOcjhD_gJ-bO_AfKctyaon59AEJVPSsMW76nD-yw4g",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -229,7 +239,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9002/api/v1/admin_role/create/8d298f76-9f08-4282-92c9-3a035fff614b",
+					"raw": "http://localhost:9002/api/v1/admin_role/create/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -240,7 +250,7 @@
 						"v1",
 						"admin_role",
 						"create",
-						"8d298f76-9f08-4282-92c9-3a035fff614b"
+						"1"
 					]
 				}
 			},
@@ -271,10 +281,20 @@
 		{
 			"name": "Management Service | Admin | Get Advs By Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSNnByQ3NaaERPRmFpSTAtUzZXb3RrZDZ5SlhTOEJQc3hZaVB6b3RaX05ZIn0.eyJleHAiOjE2NTkwNDEzMzIsImlhdCI6MTY1OTA0MTI3MiwianRpIjoiOTU4NzVhZTgtZThmMy00OTllLTliNGMtMTcxMDM2MThhODE2IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTJjMjZmNzItZGE1NS00ZjA2LTg5OGUtOWFhYWNiZDg1YTg0IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6IjE5YTg2YThhLTgxZGYtNDUxZS1hOTlkLTk3NmM3ZjE3ZGY2NyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiMTlhODZhOGEtODFkZi00NTFlLWE5OWQtOTc2YzdmMTdkZjY3IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.CcXTUWDWtwiH2ZoUr3MKNkgkGjmtZziFy2LwRIqMpPdGpYj2-RDXH0uywt7X6xWldtSR8DBXlXtka3NnQIFmgxv2R3G9zQjR1SRDpjFdCTpEW9cJSt5RmQve-AJ22ZRzROIp7937SQpUfTJNxf4_yrnMPT8kQxRrmfKkGcBKQsxagOlwgWI6TMbwiVB4XG2i87HHDYQFWmQc2aTi89NFwVO6i60MFiI_f2-vnoWV7xmyeRBbUNKYJ4uXBE3XGrft124qAsIDAci3pny2uYxFmYILstimXKFgX6o67i8hvodhNcW4cwvfoHC_4XprQUa8sw8CsJ1GDVea-diexW3emw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9002/api/v1/admin_role/alladvertisements/advertisement/1",
+					"raw": "http://localhost:9002/api/v1/admin_role/alladvertisements/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -285,7 +305,6 @@
 						"v1",
 						"admin_role",
 						"alladvertisements",
-						"advertisement",
 						"1"
 					]
 				}
@@ -328,10 +347,20 @@
 		{
 			"name": "Management Service | Admin | Delete Advs By Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSNnByQ3NaaERPRmFpSTAtUzZXb3RrZDZ5SlhTOEJQc3hZaVB6b3RaX05ZIn0.eyJleHAiOjE2NTkwNDE1MDUsImlhdCI6MTY1OTA0MTQ0NSwianRpIjoiZmZkOWY1MzAtZGY4ZC00MjJjLTk2ZTctYjE4ZDgyNTE3Yjg4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTJjMjZmNzItZGE1NS00ZjA2LTg5OGUtOWFhYWNiZDg1YTg0IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6IjY4OTVkYmRkLWVkNTMtNGE5ZS05MGVlLTU4OTk1MWNkMTQ5NSIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNjg5NWRiZGQtZWQ1My00YTllLTkwZWUtNTg5OTUxY2QxNDk1IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.rL_8R7iuW1eiulhSvVmvWiXgv-NPoqjAHMOj5vtVJ9J7si5Xd5bUAiEpHAWkreCOVO3KTDgsdvdHlHOLresHmh5REoLlcR1mVP8m_FeCe93cYD6TZ9MyjUztC6_YWQiG-spJrA8zMtCSWwSOMWv5WhZOVnoiLPsEnsKP_eu-t0RipIbNbcNoCXdjY9ZwYTtKt2JGDfFRxA7rG4Ac5Ya7kEgZ0ciCeNyHRYhbR5OriVyi6WwPa8hMmCmL3ZARo6aH0yjK9MVvCA3i3nRPvhJCYg00uSTKO9QppSU1hJhlNu1rwsuixZLOlszTdFNKa04dG9ja0PORkNGqdLMBlfVakA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9002/api/v1/admin_role/alladvertisements/delete/1",
+					"raw": "http://localhost:9002/api/v1/admin_role/delete/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -341,7 +370,6 @@
 						"api",
 						"v1",
 						"admin_role",
-						"alladvertisements",
 						"delete",
 						"1"
 					]

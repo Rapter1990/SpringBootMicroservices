@@ -18,17 +18,17 @@ services:
   #      aliases:
   #        - "database"
 
-  #keycloak:
-  #  image: quay.io/keycloak/keycloak:18.0.2
-  #  environment:
-  #    KEYCLOAK_USER: admin
-  #    KEYCLOAK_ADMIN_PASSWORD: admin
-  #  ports:
-  #    - "8181:8080"
-  #  networks:
-  #    backend:
-  #      aliases:
-  #        - "keycloak"
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - "8181:8080"
+    networks:
+      backend:
+        aliases:
+          - "keycloak"
 
   rabbitmq:
     image: "rabbitmq:3-management"
