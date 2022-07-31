@@ -37,6 +37,7 @@
         <option value="$PROJECT_DIR$/advertisement-service/pom.xml" />
         <option value="$PROJECT_DIR$/management-service/pom.xml" />
         <option value="$PROJECT_DIR$/report-service/pom.xml" />
+        <option value="$PROJECT_DIR$/configserver/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
