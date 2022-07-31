@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,7 @@ public class MessageServiceImpl implements MessageService {
 
     @RabbitListener(queues = "${queue.name}")
     @Override
-    public void receiveMessage(AdvertisementDto advertisementDto) {
+    public void receiveMessage(@Payload AdvertisementDto advertisementDto) {
 
         LOGGER.info("MessageServiceImpl | receiveMessage is started");
 
