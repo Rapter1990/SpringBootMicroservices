@@ -31,6 +31,7 @@ public class ReportServiceImpl implements ReportService {
         report.setViewed(advertisementDto.getViewCount());
 
         report.setMessage("Advertisement Id: " + report.getAdvertisementId()
+                + "Advertisement Title : " + advertisementDto.getTitle()
                 + " Viewed: " + report.getViewed()
                 + " createdAt:" + LocalDateTime.now());
 

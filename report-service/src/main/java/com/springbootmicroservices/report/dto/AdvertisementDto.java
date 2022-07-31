@@ -8,5 +8,6 @@ import java.io.Serializable;
 public class AdvertisementDto implements Serializable {
 
     private Long id;
+    private String title;
     private Long viewCount;
 }
