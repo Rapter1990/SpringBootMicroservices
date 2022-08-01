@@ -19,8 +19,11 @@ services:
           - "database"
 
   configserver:
-    image: configserver:0.0.1-SNAPSHOT
+    image: configserver
     container_name: configServer
+    build:
+      context: ./configserver
+      dockerfile: Dockerfile
     ports:
       - "9191:9191"
     networks:
@@ -29,9 +32,12 @@ services:
           - "configserver"
 
   eurekaserver:
-    image: eurekaserver:0.0.1-SNAPSHOT
+    image: eurekaserver
     ports:
       - "8761:8761"
+    build:
+      context: ./discoveryserver
+      dockerfile: Dockerfile
     depends_on:
       configserver:
         condition: service_started
@@ -42,9 +48,12 @@ services:
 
 
   gatewayserver:
-    image: gatewayserver:0.0.1-SNAPSHOT
+    image: gatewayserver
     ports:
       - "8600:8600"
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
     environment:
       PROFILE: "default"
       SERVER_PORT: "8600"
@@ -63,7 +72,10 @@ services:
           - "gateway"
 
   userservice:
-    image: user-service:0.0.1-SNAPSHOT
+    image: user-service
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
@@ -79,7 +91,10 @@ services:
       - backend
 
   managementservice:
-    image: management-service:0.0.1-SNAPSHOT
+    image: management-service
+    build:
+      context: ./management-service
+      dockerfile: Dockerfile
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
@@ -93,7 +108,10 @@ services:
       - backend
 
   advertisementservice:
-    image: advertisement-service:0.0.1-SNAPSHOT
+    image: advertisement-service
+    build:
+      context: ./advertisement-service
+      dockerfile: Dockerfile
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
@@ -110,7 +128,10 @@ services:
 
 
   reportservice:
-    image: report-service:0.0.1-SNAPSHOT
+    image: report-service
+    build:
+      context: ./report-service
+      dockerfile: Dockerfile
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
