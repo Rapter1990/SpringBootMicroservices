@@ -1,34 +1,143 @@
 services:
 
-  #database:
-  #  container_name: mysql-database
-  #  image: 'mysql:latest'
-  #  ports:
-  #    - "3366:3306"
-  #  restart: always
-  #  environment:
-  #    MYSQL_DATABASE: "springbootuser"
-  #    MYSQL_USER: "springmicroserviceuser"
-  #    MYSQL_PASSWORD: "111111"
-  #    MYSQL_ROOT_PASSWORD: "111111"
-  #  volumes:
-  #    - db-data:/var/lib/mysql
-  #  networks:
-  #    backend:
-  #      aliases:
-  #        - "database"
+  database:
+    container_name: mysql-database
+    image: 'mysql:latest'
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: "springbootuser"
+      MYSQL_USER: "springmicroserviceuser"
+      MYSQL_PASSWORD: "111111"
+      MYSQL_ROOT_PASSWORD: "111111"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      backend:
+        aliases:
+          - "database"
+
+  configserver:
+    image: configserver:0.0.1-SNAPSHOT
+    container_name: configServer
+    ports:
+      - "9191:9191"
+    networks:
+      backend:
+        aliases:
+          - "configserver"
+
+  eurekaserver:
+    image: eurekaserver:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    depends_on:
+      configserver:
+        condition: service_started
+    networks:
+      backend:
+        aliases:
+          - "eurekaserver"
+
+
+  gatewayserver:
+    image: gatewayserver:0.0.1-SNAPSHOT
+    ports:
+      - "8600:8600"
+    environment:
+      PROFILE: "default"
+      SERVER_PORT: "8600"
+      CONFIGSERVER_URI: "http://configserver:9191"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKASERVER_PORT: "8761"
+      CONFIGSERVER_PORT: "9191"
+    depends_on:
+      configserver:
+        condition: service_started
+      eurekaserver:
+        condition: service_started
+    networks:
+      backend:
+        aliases:
+          - "gateway"
+
+  userservice:
+    image: user-service:0.0.1-SNAPSHOT
+    environment:
+      CONFIGSERVER_URI: "http://configserver:9191"
+      CONFIGSERVER_PORT: "9191"
+      DATABASESERVER_PORT: "3306"
+    depends_on:
+      database:
+        condition: service_healthy
+      configserver:
+        condition: service_started
+    ports:
+      - "9000:9000"
+    networks:
+      - backend
+
+  managementservice:
+    image: management-service:0.0.1-SNAPSHOT
+    environment:
+      CONFIGSERVER_URI: "http://configserver:9191"
+      CONFIGSERVER_PORT: "9191"
+      DATABASESERVER_PORT: "3306"
+    depends_on:
+      configserver:
+        condition: service_started
+    ports:
+      - "9002:9002"
+    networks:
+      - backend
+
+  advertisementservice:
+    image: advertisement-service:0.0.1-SNAPSHOT
+    environment:
+      CONFIGSERVER_URI: "http://configserver:9191"
+      CONFIGSERVER_PORT: "9191"
+      DATABASESERVER_PORT: "3306"
+    depends_on:
+      database:
+        condition: service_healthy
+      configserver:
+        condition: service_started
+    ports:
+      - "9001:9001"
+    networks:
+      - backend
+
+
+  reportservice:
+    image: report-service:0.0.1-SNAPSHOT
+    environment:
+      CONFIGSERVER_URI: "http://configserver:9191"
+      CONFIGSERVER_PORT: "9191"
+      DATABASESERVER_PORT: "3306"
+    depends_on:
+      database:
+        condition: service_healthy
+      configserver:
+        condition: service_started
+    ports:
+      - "9003:9003"
+    networks:
+      - backend
 
   keycloak:
-    image: jboss/keycloak
+    image: quay.io/keycloak/keycloak:18.0.2
     environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
     ports:
       - "8181:8080"
     networks:
       backend:
         aliases:
           - "keycloak"
+    command:
+      - start-dev
 
   rabbitmq:
     image: "rabbitmq:3-management"
@@ -43,3 +152,7 @@ services:
 networks:
   backend:
     driver: bridge
+
+
+volumes:
+  db-data:
