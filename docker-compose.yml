@@ -18,9 +18,9 @@ services:
         aliases:
           - "database"
     healthcheck:
-      test: "mysql -u $MYSQL_USER --password=$MYSQL_ROOT_PASSWORD content -e 'select 1'"
-      interval: 1s
-      retries: 120
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
 
   configserver:
     image: configserver
