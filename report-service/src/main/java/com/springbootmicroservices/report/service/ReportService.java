@@ -1,6 +1,6 @@
 package com.springbootmicroservices.report.service;
 
-import com.springbootmicroservices.advertisement.dto.AdvertisementDto;
+import com.springbootmicroservices.report.dto.AdvertisementDto;
 
 public interface ReportService {
     void createReport(AdvertisementDto advertisementDto);

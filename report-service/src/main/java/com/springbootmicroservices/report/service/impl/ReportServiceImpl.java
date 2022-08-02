@@ -1,6 +1,6 @@
 package com.springbootmicroservices.report.service.impl;
 
-import com.springbootmicroservices.advertisement.dto.AdvertisementDto;
+import com.springbootmicroservices.report.dto.AdvertisementDto;
 import com.springbootmicroservices.report.entity.Report;
 import com.springbootmicroservices.report.repository.ReportRepository;
 import com.springbootmicroservices.report.service.ReportService;

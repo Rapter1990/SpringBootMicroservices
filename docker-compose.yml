@@ -4,7 +4,7 @@ services:
     container_name: mysql-database
     image: 'mysql:latest'
     ports:
-      - "3306:3306"
+      - "3366:3306"
     restart: always
     environment:
       MYSQL_DATABASE: "springbootuser"
@@ -17,6 +17,10 @@ services:
       backend:
         aliases:
           - "database"
+    healthcheck:
+      test: "mysql -u $MYSQL_USER --password=$MYSQL_ROOT_PASSWORD content -e 'select 1'"
+      interval: 1s
+      retries: 120
 
   configserver:
     image: configserver
