@@ -13,6 +13,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR userservice
 
-COPY --from=build target/*.jar userservice.jar
+COPY --from=build target/*.jar userservice-0.0.1-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","userservice.jar"]
+ENTRYPOINT ["java","-jar","userservice-0.0.1-SNAPSHOT.jar"]

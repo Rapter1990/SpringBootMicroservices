@@ -13,6 +13,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR configserver
 
-COPY --from=build target/*.jar configserver.jar
+COPY --from=build target/*.jar configserver-0.0.1-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","configserver.jar"]
+ENTRYPOINT ["java","-jar","configserver-0.0.1-SNAPSHOT.jar"]

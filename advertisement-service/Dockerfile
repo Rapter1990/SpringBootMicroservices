@@ -13,6 +13,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR advertisementservice
 
-COPY --from=build target/*.jar advertisementservice.jar
+COPY --from=build target/*.jar advertisement-0.0.1-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","advertisementservice.jar"]
+ENTRYPOINT ["java","-jar","advertisement-0.0.1-SNAPSHOT.jar"]

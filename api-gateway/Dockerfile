@@ -13,6 +13,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR apigateway
 
-COPY --from=build target/*.jar apigateway.jar
+COPY --from=build target/*.jar apigateway-0.0.1-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","apigateway.jar"]
+ENTRYPOINT ["java","-jar","apigateway-0.0.1-SNAPSHOT.jar"]

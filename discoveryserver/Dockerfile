@@ -13,6 +13,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR discoveryserver
 
-COPY --from=build target/*.jar discoveryserver.jar
+COPY --from=build target/*.jar discoveryserver-0.0.1-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","discoveryserver.jar"]
+ENTRYPOINT ["java","-jar","discoveryserver-0.0.1-SNAPSHOT.jar"]

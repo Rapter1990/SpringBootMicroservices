@@ -13,6 +13,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR reportservice
 
-COPY --from=build target/*.jar reportservice.jar
+COPY --from=build target/*.jar report-0.0.1-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","reportservice.jar"]
+ENTRYPOINT ["java","-jar","report-0.0.1-SNAPSHOT.jar"]

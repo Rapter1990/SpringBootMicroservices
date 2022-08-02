@@ -13,6 +13,6 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 
 WORKDIR managementservice
 
-COPY --from=build target/*.jar managementservice.jar
+COPY --from=build target/*.jar management-0.0.1-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","managementservice.jar"]
+ENTRYPOINT ["java","-jar","management-0.0.1-SNAPSHOT.jar"]
