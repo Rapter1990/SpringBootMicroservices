@@ -7,7 +7,7 @@ services:
       - "3366:3306"
     restart: always
     environment:
-      MYSQL_DATABASE: "springbootuser"
+      #MYSQL_DATABASE: "springbootuser"
       MYSQL_USER: "springmicroserviceuser"
       MYSQL_PASSWORD: "111111"
       MYSQL_ROOT_PASSWORD: "111111"
@@ -83,7 +83,11 @@ services:
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      DATABASESERVER_PORT: "3306"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootuser?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
+      SPRING_DATASOURCE_USERNAME: "springmicroserviceuser"
+      SPRING_DATASOURCE_PASSWORD: "111111"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
     depends_on:
       database:
         condition: service_healthy
@@ -102,7 +106,6 @@ services:
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      DATABASESERVER_PORT: "3306"
     depends_on:
       configserver:
         condition: service_started
@@ -119,7 +122,11 @@ services:
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      DATABASESERVER_PORT: "3306"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootadvertisement?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
+      SPRING_DATASOURCE_USERNAME: "springmicroserviceuser"
+      SPRING_DATASOURCE_PASSWORD: "111111"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
     depends_on:
       database:
         condition: service_healthy
@@ -139,7 +146,11 @@ services:
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      DATABASESERVER_PORT: "3306"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootreport?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
+      SPRING_DATASOURCE_USERNAME: "springmicroserviceuser"
+      SPRING_DATASOURCE_PASSWORD: "111111"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
     depends_on:
       database:
         condition: service_healthy
