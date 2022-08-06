@@ -53,6 +53,9 @@ services:
     build:
       context: ./configserver
       dockerfile: Dockerfile
+    environment:
+      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_PORT: "9191"
     ports:
       - "9191:9191"
     networks:
@@ -68,7 +71,9 @@ services:
       context: ./discoveryserver
       dockerfile: Dockerfile
     environment:
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_PORT: "9191"
+      EUREKASERVER_URI: "http://localhost:8761/eureka/"
       EUREKASERVER_PORT: "8761"
     depends_on:
       configserver:
@@ -89,8 +94,8 @@ services:
     environment:
       PROFILE: "default"
       SERVER_PORT: "8600"
-      CONFIGSERVER_URI: "http://configserver:9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      CONFIGSERVER_URI: "http://localhost:9191"
+      EUREKASERVER_URI: "http://localhost:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       CONFIGSERVER_PORT: "9191"
     depends_on:
@@ -109,9 +114,10 @@ services:
       context: ./user-service
       dockerfile: Dockerfile
     environment:
-      CONFIGSERVER_URI: "http://configserver:9191"
+      SERVER_PORT: "9000"
+      CONFIGSERVER_URI: "http://localhost:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKASERVER_URI: "http://localhost:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootuser?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
@@ -134,6 +140,7 @@ services:
       context: ./management-service
       dockerfile: Dockerfile
     environment:
+      SERVER_PORT: "9002"
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
@@ -156,6 +163,7 @@ services:
       context: ./advertisement-service
       dockerfile: Dockerfile
     environment:
+      SERVER_PORT: "9001"
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
@@ -182,6 +190,7 @@ services:
       context: ./report-service
       dockerfile: Dockerfile
     environment:
+      SERVER_PORT: "9003"
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
