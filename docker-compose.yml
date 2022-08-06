@@ -22,6 +22,30 @@ services:
       timeout: 20s
       retries: 10
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:18.0.2
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "8181:8080"
+    networks:
+      backend:
+        aliases:
+          - "keycloak"
+    command:
+      - start-dev
+
+  rabbitmq:
+      image: "rabbitmq:3-management"
+      container_name: "rmq3"
+      environment:
+        RABBITMQ_DEFAULT_USER: "rabbitmq"
+        RABBITMQ_DEFAULT_PASS: "123456"
+      ports:
+        - "5672:5672"
+        - "15672:15672"
+
   configserver:
     image: configserver
     container_name: configServer
@@ -160,30 +184,6 @@ services:
       - "9003:9003"
     networks:
       - backend
-
-  keycloak:
-    image: quay.io/keycloak/keycloak:18.0.2
-    environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-    ports:
-      - "8181:8080"
-    networks:
-      backend:
-        aliases:
-          - "keycloak"
-    command:
-      - start-dev
-
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    container_name: "rmq3"
-    environment:
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "123456"
-    ports:
-      - "5672:5672"
-      - "15672:15672"
 
 networks:
   backend:
