@@ -45,6 +45,10 @@ services:
       ports:
         - "5672:5672"
         - "15672:15672"
+      networks:
+        backend:
+          aliases:
+            - "rabbitmqserver"
 
 
   configserver:
@@ -54,7 +58,7 @@ services:
       context: ./configserver
       dockerfile: Dockerfile
     environment:
-      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
     ports:
       - "9191:9191"
@@ -71,9 +75,9 @@ services:
       context: ./discoveryserver
       dockerfile: Dockerfile
     environment:
-      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://localhost:8761/eureka/"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
     depends_on:
       configserver:
@@ -94,8 +98,8 @@ services:
     environment:
       PROFILE: "default"
       SERVER_PORT: "8600"
-      CONFIGSERVER_URI: "http://localhost:9191"
-      EUREKASERVER_URI: "http://localhost:8761/eureka/"
+      CONFIGSERVER_URI: "http://configserver:9191"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       CONFIGSERVER_PORT: "9191"
     depends_on:
@@ -115,9 +119,9 @@ services:
       dockerfile: Dockerfile
     environment:
       SERVER_PORT: "9000"
-      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://localhost:8761/eureka/"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootuser?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
@@ -141,9 +145,9 @@ services:
       dockerfile: Dockerfile
     environment:
       SERVER_PORT: "9002"
-      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://localhost:8761/eureka/"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
     depends_on:
       configserver:
@@ -164,9 +168,9 @@ services:
       dockerfile: Dockerfile
     environment:
       SERVER_PORT: "9001"
-      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://localhost:8761/eureka/"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootadvertisement?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
@@ -191,9 +195,9 @@ services:
       dockerfile: Dockerfile
     environment:
       SERVER_PORT: "9003"
-      CONFIGSERVER_URI: "http://localhost:9191"
+      CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://localhost:8761/eureka/"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootreport?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
