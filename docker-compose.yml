@@ -7,6 +7,7 @@ services:
       - "3366:3306"
     restart: always
     environment:
+      #MYSQL_DATABASE: "springbootuser"
       MYSQL_USER: "springmicroserviceuser"
       MYSQL_PASSWORD: "111111"
       MYSQL_ROOT_PASSWORD: "111111"
@@ -36,18 +37,14 @@ services:
       - start-dev
 
   rabbitmq:
-      image: "rabbitmq:3-management"
-      container_name: "rmq3"
-      environment:
-        RABBITMQ_DEFAULT_USER: "rabbitmq"
-        RABBITMQ_DEFAULT_PASS: "123456"
-      ports:
-        - "5672:5672"
-        - "15672:15672"
-      networks:
-        backend:
-          aliases:
-            - "rabbitmqserver"
+    image: "rabbitmq:3-management"
+    container_name: "rmq3"
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "123456"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
 
   configserver:
