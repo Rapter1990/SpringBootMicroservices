@@ -14,9 +14,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      backend:
-        aliases:
-          - "database"
+      - backend
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
@@ -30,9 +28,7 @@ services:
     ports:
       - "8181:8080"
     networks:
-      backend:
-        aliases:
-          - "keycloak"
+      - backend
     command:
       - start-dev
 
@@ -59,9 +55,7 @@ services:
     ports:
       - "9191:9191"
     networks:
-      backend:
-        aliases:
-          - "configserver"
+      - backend
 
   eurekaserver:
     image: eurekaserver
@@ -79,9 +73,7 @@ services:
       configserver:
         condition: service_started
     networks:
-      backend:
-        aliases:
-          - "eurekaserver"
+      - backend
 
 
   gatewayserver:
@@ -104,9 +96,7 @@ services:
       eurekaserver:
         condition: service_started
     networks:
-      backend:
-        aliases:
-          - "gateway"
+      - backend
 
   userservice:
     image: user-service
