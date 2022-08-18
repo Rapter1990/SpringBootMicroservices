@@ -41,7 +41,8 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-
+    networks:
+      - backend
 
   configserver:
     image: configserver
@@ -67,8 +68,9 @@ services:
     environment:
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
+      WAIT_HOSTS: configserver:9191
     depends_on:
       configserver:
         condition: service_started
@@ -87,9 +89,10 @@ services:
       PROFILE: "default"
       SERVER_PORT: "8600"
       CONFIGSERVER_URI: "http://configserver:9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
       CONFIGSERVER_PORT: "9191"
+      WAIT_HOSTS: configserver:9191
     depends_on:
       configserver:
         condition: service_started
@@ -107,13 +110,17 @@ services:
       SERVER_PORT: "9000"
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootuser?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
-      SPRING_DATASOURCE_USERNAME: "springmicroserviceuser"
-      SPRING_DATASOURCE_PASSWORD: "111111"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      WAIT_HOSTS: configserver:9191
+      DATABASE_HOST: database
+      DATABASE_USER: springmicroserviceuser
+      DATABASE_PASSWORD: 111111
+      DATABASE_NAME: springbootuser
+      DATABASE_PORT: 3306
+      SPRING_APPLICATION_JSON: '{
+              "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
     depends_on:
       database:
         condition: service_healthy
@@ -133,8 +140,9 @@ services:
       SERVER_PORT: "9002"
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
+      WAIT_HOSTS: configserver:9191
     depends_on:
       configserver:
         condition: service_started
@@ -156,13 +164,17 @@ services:
       SERVER_PORT: "9001"
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootadvertisement?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
-      SPRING_DATASOURCE_USERNAME: "springmicroserviceuser"
-      SPRING_DATASOURCE_PASSWORD: "111111"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      WAIT_HOSTS: configserver:9191
+      DATABASE_HOST: database
+      DATABASE_USER: springmicroserviceuser
+      DATABASE_PASSWORD: 111111
+      DATABASE_NAME: springbootadvertisement
+      DATABASE_PORT: 3306
+      SPRING_APPLICATION_JSON: '{
+                  "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
     depends_on:
       database:
         condition: service_healthy
@@ -183,13 +195,17 @@ services:
       SERVER_PORT: "9003"
       CONFIGSERVER_URI: "http://configserver:9191"
       CONFIGSERVER_PORT: "9191"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       EUREKASERVER_PORT: "8761"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://database:3366/springbootreport?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Turkey"
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.hibernate.dialect.MySQL8Dialect"
-      SPRING_DATASOURCE_USERNAME: "springmicroserviceuser"
-      SPRING_DATASOURCE_PASSWORD: "111111"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      WAIT_HOSTS: configserver:9191
+      DATABASE_HOST: database
+      DATABASE_USER: springmicroserviceuser
+      DATABASE_PASSWORD: 111111
+      DATABASE_NAME: springbootreport
+      DATABASE_PORT: 3306
+      SPRING_APPLICATION_JSON: '{
+                      "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
     depends_on:
       database:
         condition: service_healthy
