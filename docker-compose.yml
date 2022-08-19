@@ -13,7 +13,7 @@ services:
       MYSQL_PASSWORD: "111111"
       MYSQL_ROOT_PASSWORD: "111111"
     volumes:
-      - db-data:/var/lib/mysql
+      #- db-data:/var/lib/mysql
       - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
