@@ -1,3 +1,4 @@
+
 services:
 
   database:
@@ -13,6 +14,7 @@ services:
       MYSQL_ROOT_PASSWORD: "111111"
     volumes:
       - db-data:/var/lib/mysql
+      - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
     healthcheck:
@@ -50,7 +52,7 @@ services:
     build:
       context: ./configserver
       dockerfile: Dockerfile
-    #environment:
+      #environment:
       #CONFIGSERVER_URI: "http://configserver:9191"
       #CONFIGSERVER_PORT: "9191"
     ports:
@@ -139,8 +141,6 @@ services:
         condition: service_started
       eurekaserver:
         condition: service_started
-      keycloak:
-        condition: service_started
     ports:
       - "9000:9000"
     networks:
@@ -196,8 +196,6 @@ services:
         condition: service_started
       eurekaserver:
         condition: service_started
-      rabbitmq:
-        condition: service_started
     ports:
       - "9001:9001"
     networks:
@@ -230,8 +228,6 @@ services:
       configserver:
         condition: service_started
       eurekaserver:
-        condition: service_started
-      rabbitmq:
         condition: service_started
     ports:
       - "9003:9003"
