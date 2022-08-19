@@ -50,9 +50,9 @@ services:
     build:
       context: ./configserver
       dockerfile: Dockerfile
-    environment:
-      CONFIGSERVER_URI: "http://configserver:9191"
-      CONFIGSERVER_PORT: "9191"
+    #environment:
+      #CONFIGSERVER_URI: "http://configserver:9191"
+      #CONFIGSERVER_PORT: "9191"
     ports:
       - "9191:9191"
     networks:
@@ -66,10 +66,11 @@ services:
       context: ./discoveryserver
       dockerfile: Dockerfile
     environment:
-      CONFIGSERVER_URI: "http://configserver:9191"
-      CONFIGSERVER_PORT: "9191"
+      #CONFIGSERVER_URI: "http://configserver:9191"
+      #CONFIGSERVER_PORT: "9191"
+      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      EUREKASERVER_PORT: "8761"
+      #EUREKASERVER_PORT: "8761"
       WAIT_HOSTS: configserver:9191
     depends_on:
       configserver:
@@ -88,15 +89,24 @@ services:
     environment:
       PROFILE: "default"
       SERVER_PORT: "8600"
-      CONFIGSERVER_URI: "http://configserver:9191"
+      #CONFIGSERVER_URI: "http://configserver:9191"
+      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      EUREKASERVER_PORT: "8761"
-      CONFIGSERVER_PORT: "9191"
+      #EUREKASERVER_PORT: "8761"
+      #CONFIGSERVER_PORT: "9191"
       WAIT_HOSTS: configserver:9191
     depends_on:
       configserver:
         condition: service_started
       eurekaserver:
+        condition: service_started
+      userservice:
+        condition: service_started
+      managementservice:
+        condition: service_started
+      advertisementservice:
+        condition: service_started
+      reportservice:
         condition: service_started
     networks:
       - backend
@@ -108,10 +118,11 @@ services:
       dockerfile: Dockerfile
     environment:
       SERVER_PORT: "9000"
-      CONFIGSERVER_URI: "http://configserver:9191"
-      CONFIGSERVER_PORT: "9191"
+      #CONFIGSERVER_URI: "http://configserver:9191"
+      #CONFIGSERVER_PORT: "9191"
+      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      EUREKASERVER_PORT: "8761"
+      #EUREKASERVER_PORT: "8761"
       WAIT_HOSTS: configserver:9191
       DATABASE_HOST: database
       DATABASE_USER: springmicroserviceuser
@@ -126,6 +137,10 @@ services:
         condition: service_healthy
       configserver:
         condition: service_started
+      eurekaserver:
+        condition: service_started
+      keycloak:
+        condition: service_started
     ports:
       - "9000:9000"
     networks:
@@ -138,17 +153,16 @@ services:
       dockerfile: Dockerfile
     environment:
       SERVER_PORT: "9002"
-      CONFIGSERVER_URI: "http://configserver:9191"
-      CONFIGSERVER_PORT: "9191"
+      #CONFIGSERVER_URI: "http://configserver:9191"
+      #CONFIGSERVER_PORT: "9191"
+      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      EUREKASERVER_PORT: "8761"
+      #EUREKASERVER_PORT: "8761"
       WAIT_HOSTS: configserver:9191
     depends_on:
       configserver:
         condition: service_started
-      advertisementservice:
-        condition: service_started
-      reportservice:
+      eurekaserver:
         condition: service_started
     ports:
       - "9002:9002"
@@ -180,6 +194,10 @@ services:
         condition: service_healthy
       configserver:
         condition: service_started
+      eurekaserver:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
     ports:
       - "9001:9001"
     networks:
@@ -210,6 +228,10 @@ services:
       database:
         condition: service_healthy
       configserver:
+        condition: service_started
+      eurekaserver:
+        condition: service_started
+      rabbitmq:
         condition: service_started
     ports:
       - "9003:9003"

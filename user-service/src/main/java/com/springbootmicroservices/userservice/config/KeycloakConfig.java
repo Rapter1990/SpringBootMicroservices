@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KeycloakConfig {
 
-    public final static String serverUrl = "http://localhost:8181";
+    //public final static String serverUrl = "http://localhost:8181";
+    public final static String serverUrl = "http://keycloak:8181";
     public final static String realm = "master";
     public final static String clientId = "spring-boot-microservice-keycloak";
     public final static String clientSecret = "6UxIqgy19GidtJB1OgRwqU3Acp11tOlZ";
