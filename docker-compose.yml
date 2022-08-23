@@ -100,20 +100,18 @@ services:
       SPRING_PROFILES_ACTIVE: path
       SPRING_CLOUD_GATEWAY_ROUTES[0]_URI: http://userservice:9000
       SPRING_CLOUD_GATEWAY_ROUTES[0]_ID: user-service
-      SPRING_CLOUD_GATEWAY_ROUTES[0]_PREDICATES[0]: Path= /userservice-api/*
-      SPRING_CLOUD_GATEWAY_ROUTES[0]_FILTERS[0]: StripPrefix=1
+      SPRING_CLOUD_GATEWAY_ROUTES[0]_PREDICATES[0]: Path= /api/v1/users/*
       SPRING_CLOUD_GATEWAY_ROUTES[1]_URI: http://advertisementservice:9002
       SPRING_CLOUD_GATEWAY_ROUTES[1]_ID: advertisementservice
-      SPRING_CLOUD_GATEWAY_ROUTES[1]_PREDICATES[0]: Path= /advertisementservice-api/*
-      SPRING_CLOUD_GATEWAY_ROUTES[1]_FILTERS[0]: StripPrefix=1
+      SPRING_CLOUD_GATEWAY_ROUTES[1]_PREDICATES[0]: Path=/api/v1/admin_role/*
+      SPRING_CLOUD_GATEWAY_ROUTES[1]_PREDICATES[1]: Path=/api/v1/user_role/*
       SPRING_CLOUD_GATEWAY_ROUTES[2]_URI: http://managementservice:9002
       SPRING_CLOUD_GATEWAY_ROUTES[2]_ID: managementservice
-      SPRING_CLOUD_GATEWAY_ROUTES[2]_PREDICATES[0]: Path= /managementservice-api/*
-      SPRING_CLOUD_GATEWAY_ROUTES[2]_FILTERS[0]: StripPrefix=1
+      SPRING_CLOUD_GATEWAY_ROUTES[2]_PREDICATES[0]: Path=/api/v1/admin_role/*
+      SPRING_CLOUD_GATEWAY_ROUTES[2]_PREDICATES[1]: Path=/api/v1/user_role/*
       SPRING_CLOUD_GATEWAY_ROUTES[3]_URI: http://reportservice:9003
       SPRING_CLOUD_GATEWAY_ROUTES[3]_ID: reportservice
-      SPRING_CLOUD_GATEWAY_ROUTES[3]_PREDICATES[0]: Path= /reportservice-api//*
-      SPRING_CLOUD_GATEWAY_ROUTES[3]_FILTERS[0]: StripPrefix=1
+      SPRING_CLOUD_GATEWAY_ROUTES[3]_PREDICATES[0]: Path=/api/v1/reports/*
     depends_on:
       configserver:
         condition: service_started
