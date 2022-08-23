@@ -14,7 +14,7 @@ public class KeycloakConfig {
     public final static String serverUrl = "http://keycloak:8181";
     public final static String realm = "master";
     public final static String clientId = "spring-boot-microservice-keycloak";
-    public final static String clientSecret = "6UxIqgy19GidtJB1OgRwqU3Acp11tOlZ";
+    public final static String clientSecret = "l4ToCS7CfEA3uR3BH4M9YzhxXNrzymOh";
     final static String userName = "admin";
     final static String password = "admin";
 
