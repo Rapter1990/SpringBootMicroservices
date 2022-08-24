@@ -519,6 +519,111 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "API GATEWAY | Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceuser\",\r\n    \"password\" : \"user123456\",\r\n    \"name\" : \"Micro User\",\r\n    \"surname\" : \"User Surname\",\r\n    \"phoneNumber\" : \"123456789\",\r\n    \"email\" : \"springbootmicroserviceuser@user.com\",\r\n    \"role\" : \"ROLE_USER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8600/userservice-api/user-service/api/v1/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"userservice-api",
+						"user-service",
+						"api",
+						"v1",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Config server |default",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/config-server/default",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"config-server",
+						"default"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Config server | native",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/config-server/native",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"config-server",
+						"native"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | User Service | Sign Up User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceuser\",\r\n    \"password\" : \"user123456\",\r\n    \"name\" : \"Micro User\",\r\n    \"surname\" : \"User Surname\",\r\n    \"phoneNumber\" : \"123456789\",\r\n    \"email\" : \"springbootmicroserviceuser@user.com\",\r\n    \"role\" : \"ROLE_USER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8600/userservice-api/api/v1/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"userservice-api",
+						"api",
+						"v1",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
