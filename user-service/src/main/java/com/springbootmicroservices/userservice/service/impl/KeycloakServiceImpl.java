@@ -80,15 +80,20 @@ public class KeycloakServiceImpl implements KeycloakService {
 
         userRepresentation.setEnabled(true);
 
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | userRepresentation is completed");
+
         CredentialRepresentation credentialRepresentation = new CredentialRepresentation();
         credentialRepresentation.setType("password");
         credentialRepresentation.setValue(keycloakUser.getPassword());
         credentialRepresentation.setTemporary(false);
 
-
         userRepresentation.setCredentials(Collections.singletonList(credentialRepresentation));
 
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | credentialRepresentation is completed");
+
         UsersResource usersResource = keycloak.realm(KeycloakConfig.realm).users();
+
+        LOGGER.info("KeycloakServiceImpl | createUserWithKeycloak | usersResource : " + usersResource.toString());
 
         // Create user (requires manage-users role)
         Response response = usersResource.create(userRepresentation);
