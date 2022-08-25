@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
             userRepository.save(signUpUser);
 
-            return "Sign In";
+            return "Sign Up completed";
         }
 
         return "Not Register";
