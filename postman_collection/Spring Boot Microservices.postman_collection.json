@@ -259,6 +259,16 @@
 		{
 			"name": "Management Service | Admin | Get All Advs",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSNnByQ3NaaERPRmFpSTAtUzZXb3RrZDZ5SlhTOEJQc3hZaVB6b3RaX05ZIn0.eyJleHAiOjE2NTkwNDA5NzgsImlhdCI6MTY1OTA0MDkxOCwianRpIjoiOTczNzUyMjktYmE0MS00M2M5LTk4M2ItMzY5MGJjYTA0MGJiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYTJjMjZmNzItZGE1NS00ZjA2LTg5OGUtOWFhYWNiZDg1YTg0IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6IjYzZjgyODgzLTMzMTMtNGRmYi05YmQ2LWZmNGI1M2NiNzYyZCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiNjNmODI4ODMtMzMxMy00ZGZiLTliZDYtZmY0YjUzY2I3NjJkIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.iRSVM2lez_QihckxkH8Ecm0nyvLDSt7I3P37UmiB-tvYaqgHUofsFA3b8-Qk2SIUvxcLnTUB0j8vcTegaPhPeYBPmOB0MakYnC55dLdRzxYNDaAJNdK3_AM8wCt4h89NoHphH1JfxIkoLStvPHeoEeQcpRdK23SxuygfhhHwVFx_xmvNYr6uASkI8uziagedqNdYwTWX4fTxfz4FAobFTXhzLOkVTrSL19L67jZ7Kh_h7a0NObicF-xXvEFQql308mKYcdZM6Ti1p6YVESJV0-i-RZstDHIAWwLy2Y5So1g1ZAgssizbs3FkbcpU--_SmwiAfxmn4Bk8UYBSXHIJKw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -521,7 +531,7 @@
 			"response": []
 		},
 		{
-			"name": "API GATEWAY | Sign Up",
+			"name": "Docker | API Gateway | User Service | Sign Up User",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -535,15 +545,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8600/userservice-api/user-service/api/v1/users/signup",
+					"raw": "http://localhost:8600/api/v1/users/signup",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8600",
 					"path": [
-						"userservice-api",
-						"user-service",
 						"api",
 						"v1",
 						"users",
@@ -554,53 +562,13 @@
 			"response": []
 		},
 		{
-			"name": "Config server |default",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9191/config-server/default",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9191",
-					"path": [
-						"config-server",
-						"default"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Config server | native",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9191/config-server/native",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9191",
-					"path": [
-						"config-server",
-						"native"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Docker | User Service | Sign Up User",
+			"name": "Docker | API Gateway | User Service | Login User",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"springbootmicroserviceuser\",\r\n    \"password\" : \"user123456\",\r\n    \"name\" : \"Micro User\",\r\n    \"surname\" : \"User Surname\",\r\n    \"phoneNumber\" : \"123456789\",\r\n    \"email\" : \"springbootmicroserviceuser@user.com\",\r\n    \"role\" : \"ROLE_USER\"\r\n}",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceuser\",\r\n    \"password\" : \"user123456\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -608,18 +576,399 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8600/userservice-api/api/v1/users/signup",
+					"raw": "http://localhost:8600/api/v1/users/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8600",
 					"path": [
-						"userservice-api",
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | User Service | Sign Up Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceadmin\",\r\n    \"password\" : \"admin123456\",\r\n    \"name\" : \"Micro Admin\",\r\n    \"surname\" : \"Admin Surname\",\r\n    \"phoneNumber\" : \"123456789\",\r\n    \"email\" : \"springbootmicroserviceadmin@admin.com\",\r\n    \"role\" : \"ROLE_ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8600/api/v1/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
 						"api",
 						"v1",
 						"users",
 						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | User Service | Login Admin",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"springbootmicroserviceadmin\",\r\n    \"password\" : \"admin123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8600/api/v1/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | User Service | User Info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZzFuUS1tZ19XWnBTTGF4RmpFVXVHRG8yRGR3NjVBdXhrSFBpYm5VMXZ3In0.eyJleHAiOjE2NjAxNzExNzgsImlhdCI6MTY2MDE3MTExOCwianRpIjoiOGRjY2U4ZTctNTAxYi00ZjYzLTg3NDYtNmI3ODJjMzYwZjlkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjA3YjE4MmItMWFlMi00ZmJlLTg4MzMtZDRhMzRhOGJjOTBhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6ImEzM2EwZjQxLWIxNDktNGEzYS1hY2Q0LTZhYTJkYWNiNTZjYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYTMzYTBmNDEtYjE0OS00YTNhLWFjZDQtNmFhMmRhY2I1NmNiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.qDAP80AZXplgFuCxL__AlwddAJtiwLu6xtWmekaPhS8PCfZp1aAsLThUphn15ZNW9yR8lZKTgqPsWJHhHhpQ3_Fegh96ECcRKI0utPx3xbYyFQa5u1fAFzet0EDJTNbBBw0N16VK-mqY32mSHPM5NIYaqr1XoTwkxTBPUm-gcViA6tcyCI_7iql0LdFzta0al7lmjIC3RBg46aHiGd__H11l-ZAXJpzMRtT7Ea6wMmD4Eg9sNh5lgjSZil8e2xX8rOB35STYU989ZEOtH6OVQu9OHM_dng3HE29N39I4zv2Hhg547eyXFqYk3mR4xEkh6ItndK4zmxJnzOKIee2c8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/users/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | Admin | Create Advs for User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZzFuUS1tZ19XWnBTTGF4RmpFVXVHRG8yRGR3NjVBdXhrSFBpYm5VMXZ3In0.eyJleHAiOjE2NjAxNzExNzgsImlhdCI6MTY2MDE3MTExOCwianRpIjoiOGRjY2U4ZTctNTAxYi00ZjYzLTg3NDYtNmI3ODJjMzYwZjlkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjA3YjE4MmItMWFlMi00ZmJlLTg4MzMtZDRhMzRhOGJjOTBhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6ImEzM2EwZjQxLWIxNDktNGEzYS1hY2Q0LTZhYTJkYWNiNTZjYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYTMzYTBmNDEtYjE0OS00YTNhLWFjZDQtNmFhMmRhY2I1NmNiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.qDAP80AZXplgFuCxL__AlwddAJtiwLu6xtWmekaPhS8PCfZp1aAsLThUphn15ZNW9yR8lZKTgqPsWJHhHhpQ3_Fegh96ECcRKI0utPx3xbYyFQa5u1fAFzet0EDJTNbBBw0N16VK-mqY32mSHPM5NIYaqr1XoTwkxTBPUm-gcViA6tcyCI_7iql0LdFzta0al7lmjIC3RBg46aHiGd__H11l-ZAXJpzMRtT7Ea6wMmD4Eg9sNh5lgjSZil8e2xX8rOB35STYU989ZEOtH6OVQu9OHM_dng3HE29N39I4zv2Hhg547eyXFqYk3mR4xEkh6ItndK4zmxJnzOKIee2c8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Advertisement 1 for User 1\",\r\n    \"price\" : 200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8600/api/v1/admin_role/create/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"create",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | Admin | Get All Advs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZzFuUS1tZ19XWnBTTGF4RmpFVXVHRG8yRGR3NjVBdXhrSFBpYm5VMXZ3In0.eyJleHAiOjE2NjAxNzExNzgsImlhdCI6MTY2MDE3MTExOCwianRpIjoiOGRjY2U4ZTctNTAxYi00ZjYzLTg3NDYtNmI3ODJjMzYwZjlkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjA3YjE4MmItMWFlMi00ZmJlLTg4MzMtZDRhMzRhOGJjOTBhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6ImEzM2EwZjQxLWIxNDktNGEzYS1hY2Q0LTZhYTJkYWNiNTZjYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYTMzYTBmNDEtYjE0OS00YTNhLWFjZDQtNmFhMmRhY2I1NmNiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.qDAP80AZXplgFuCxL__AlwddAJtiwLu6xtWmekaPhS8PCfZp1aAsLThUphn15ZNW9yR8lZKTgqPsWJHhHhpQ3_Fegh96ECcRKI0utPx3xbYyFQa5u1fAFzet0EDJTNbBBw0N16VK-mqY32mSHPM5NIYaqr1XoTwkxTBPUm-gcViA6tcyCI_7iql0LdFzta0al7lmjIC3RBg46aHiGd__H11l-ZAXJpzMRtT7Ea6wMmD4Eg9sNh5lgjSZil8e2xX8rOB35STYU989ZEOtH6OVQu9OHM_dng3HE29N39I4zv2Hhg547eyXFqYk3mR4xEkh6ItndK4zmxJnzOKIee2c8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/admin_role/alladvertisements",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"alladvertisements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | Admin | Get Advs By Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZzFuUS1tZ19XWnBTTGF4RmpFVXVHRG8yRGR3NjVBdXhrSFBpYm5VMXZ3In0.eyJleHAiOjE2NjAxNzExNzgsImlhdCI6MTY2MDE3MTExOCwianRpIjoiOGRjY2U4ZTctNTAxYi00ZjYzLTg3NDYtNmI3ODJjMzYwZjlkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjA3YjE4MmItMWFlMi00ZmJlLTg4MzMtZDRhMzRhOGJjOTBhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6ImEzM2EwZjQxLWIxNDktNGEzYS1hY2Q0LTZhYTJkYWNiNTZjYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYTMzYTBmNDEtYjE0OS00YTNhLWFjZDQtNmFhMmRhY2I1NmNiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.qDAP80AZXplgFuCxL__AlwddAJtiwLu6xtWmekaPhS8PCfZp1aAsLThUphn15ZNW9yR8lZKTgqPsWJHhHhpQ3_Fegh96ECcRKI0utPx3xbYyFQa5u1fAFzet0EDJTNbBBw0N16VK-mqY32mSHPM5NIYaqr1XoTwkxTBPUm-gcViA6tcyCI_7iql0LdFzta0al7lmjIC3RBg46aHiGd__H11l-ZAXJpzMRtT7Ea6wMmD4Eg9sNh5lgjSZil8e2xX8rOB35STYU989ZEOtH6OVQu9OHM_dng3HE29N39I4zv2Hhg547eyXFqYk3mR4xEkh6ItndK4zmxJnzOKIee2c8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/admin_role/alladvertisements/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"alladvertisements",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | Admin | Update Advs By Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZzFuUS1tZ19XWnBTTGF4RmpFVXVHRG8yRGR3NjVBdXhrSFBpYm5VMXZ3In0.eyJleHAiOjE2NjAxNzExNzgsImlhdCI6MTY2MDE3MTExOCwianRpIjoiOGRjY2U4ZTctNTAxYi00ZjYzLTg3NDYtNmI3ODJjMzYwZjlkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjA3YjE4MmItMWFlMi00ZmJlLTg4MzMtZDRhMzRhOGJjOTBhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6ImEzM2EwZjQxLWIxNDktNGEzYS1hY2Q0LTZhYTJkYWNiNTZjYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYTMzYTBmNDEtYjE0OS00YTNhLWFjZDQtNmFhMmRhY2I1NmNiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.qDAP80AZXplgFuCxL__AlwddAJtiwLu6xtWmekaPhS8PCfZp1aAsLThUphn15ZNW9yR8lZKTgqPsWJHhHhpQ3_Fegh96ECcRKI0utPx3xbYyFQa5u1fAFzet0EDJTNbBBw0N16VK-mqY32mSHPM5NIYaqr1XoTwkxTBPUm-gcViA6tcyCI_7iql0LdFzta0al7lmjIC3RBg46aHiGd__H11l-ZAXJpzMRtT7Ea6wMmD4Eg9sNh5lgjSZil8e2xX8rOB35STYU989ZEOtH6OVQu9OHM_dng3HE29N39I4zv2Hhg547eyXFqYk3mR4xEkh6ItndK4zmxJnzOKIee2c8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Advertisement 1 for User 1 Updated\",\r\n    \"price\" : 300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8600/api/v1/admin_role/update/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | Admin | Delete Advs By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/admin_role/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | Admin | Approve Advs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZzFuUS1tZ19XWnBTTGF4RmpFVXVHRG8yRGR3NjVBdXhrSFBpYm5VMXZ3In0.eyJleHAiOjE2NjAxNzExNzgsImlhdCI6MTY2MDE3MTExOCwianRpIjoiOGRjY2U4ZTctNTAxYi00ZjYzLTg3NDYtNmI3ODJjMzYwZjlkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjA3YjE4MmItMWFlMi00ZmJlLTg4MzMtZDRhMzRhOGJjOTBhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6ImEzM2EwZjQxLWIxNDktNGEzYS1hY2Q0LTZhYTJkYWNiNTZjYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYTMzYTBmNDEtYjE0OS00YTNhLWFjZDQtNmFhMmRhY2I1NmNiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.qDAP80AZXplgFuCxL__AlwddAJtiwLu6xtWmekaPhS8PCfZp1aAsLThUphn15ZNW9yR8lZKTgqPsWJHhHhpQ3_Fegh96ECcRKI0utPx3xbYyFQa5u1fAFzet0EDJTNbBBw0N16VK-mqY32mSHPM5NIYaqr1XoTwkxTBPUm-gcViA6tcyCI_7iql0LdFzta0al7lmjIC3RBg46aHiGd__H11l-ZAXJpzMRtT7Ea6wMmD4Eg9sNh5lgjSZil8e2xX8rOB35STYU989ZEOtH6OVQu9OHM_dng3HE29N39I4zv2Hhg547eyXFqYk3mR4xEkh6ItndK4zmxJnzOKIee2c8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/admin_role/advertisement/1/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"advertisement",
+						"1",
+						"approve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | Admin | Reject Advs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZzFuUS1tZ19XWnBTTGF4RmpFVXVHRG8yRGR3NjVBdXhrSFBpYm5VMXZ3In0.eyJleHAiOjE2NjAxNzExNzgsImlhdCI6MTY2MDE3MTExOCwianRpIjoiOGRjY2U4ZTctNTAxYi00ZjYzLTg3NDYtNmI3ODJjMzYwZjlkIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9tYXN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMjA3YjE4MmItMWFlMi00ZmJlLTg4MzMtZDRhMzRhOGJjOTBhIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtbWljcm9zZXJ2aWNlLWtleWNsb2FrIiwic2Vzc2lvbl9zdGF0ZSI6ImEzM2EwZjQxLWIxNDktNGEzYS1hY2Q0LTZhYTJkYWNiNTZjYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo5MDkwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYTMzYTBmNDEtYjE0OS00YTNhLWFjZDQtNmFhMmRhY2I1NmNiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiTWljcm8gQWRtaW4gQWRtaW4gU3VybmFtZSIsInByZWZlcnJlZF91c2VybmFtZSI6InNwcmluZ2Jvb3RtaWNyb3NlcnZpY2VhZG1pbiIsImdpdmVuX25hbWUiOiJNaWNybyBBZG1pbiIsImZhbWlseV9uYW1lIjoiQWRtaW4gU3VybmFtZSIsImVtYWlsIjoic3ByaW5nYm9vdG1pY3Jvc2VydmljZWFkbWluQGFkbWluLmNvbSJ9.qDAP80AZXplgFuCxL__AlwddAJtiwLu6xtWmekaPhS8PCfZp1aAsLThUphn15ZNW9yR8lZKTgqPsWJHhHhpQ3_Fegh96ECcRKI0utPx3xbYyFQa5u1fAFzet0EDJTNbBBw0N16VK-mqY32mSHPM5NIYaqr1XoTwkxTBPUm-gcViA6tcyCI_7iql0LdFzta0al7lmjIC3RBg46aHiGd__H11l-ZAXJpzMRtT7Ea6wMmD4Eg9sNh5lgjSZil8e2xX8rOB35STYU989ZEOtH6OVQu9OHM_dng3HE29N39I4zv2Hhg547eyXFqYk3mR4xEkh6ItndK4zmxJnzOKIee2c8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/admin_role/advertisement/1/reject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"admin_role",
+						"advertisement",
+						"1",
+						"reject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | User| Get All Advs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/user_role/alladvertisements",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"user_role",
+						"alladvertisements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Docker | API Gateway | Management Service | User| Get Adv",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8600/api/v1/user_role/advertisement/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8600",
+					"path": [
+						"api",
+						"v1",
+						"user_role",
+						"advertisement",
+						"1"
 					]
 				}
 			},
