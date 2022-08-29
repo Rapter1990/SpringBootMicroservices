@@ -1,26 +1,26 @@
 
 services:
 
-  database:
-    container_name: mysql-database
-    image: 'mysql:latest'
-    ports:
-      - "3366:3306"
-    restart: always
-    environment:
-      #MYSQL_DATABASE: "springbootuser"
-      MYSQL_USER: "springmicroserviceuser"
-      MYSQL_PASSWORD: "111111"
-      MYSQL_ROOT_PASSWORD: "111111"
-    volumes:
-      #- db-data:/var/lib/mysql
-      - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - backend
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 20s
-      retries: 10
+  #database:
+   # container_name: mysql-database
+   # image: 'mysql:latest'
+   # ports:
+   #   - "3366:3306"
+   # restart: always
+   # environment:
+   #   #MYSQL_DATABASE: "springbootuser"
+   #   MYSQL_USER: "springmicroserviceuser"
+   #   MYSQL_PASSWORD: "111111"
+   #   MYSQL_ROOT_PASSWORD: "111111"
+   # volumes:
+   #   #- db-data:/var/lib/mysql
+   #   - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
+   # networks:
+   #   - backend
+   # healthcheck:
+   #   test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+   #   timeout: 20s
+   #   retries: 10
 
   keycloak:
     image: quay.io/keycloak/keycloak:18.0.2
@@ -46,213 +46,213 @@ services:
     networks:
       - backend
 
-  configserver:
-    image: configserver
-    container_name: configServer
-    build:
-      context: ./configserver
-      dockerfile: Dockerfile
-    environment:
-      CONFIGSERVER_URI: "http://configserver:9191"
-      CONFIGSERVER_PORT: "9191"
-    ports:
-      - "9191:9191"
-    networks:
-      - backend
+  #configserver:
+   # image: configserver
+   # container_name: configServer
+   # build:
+   #   context: ./configserver
+   #   dockerfile: Dockerfile
+   # environment:
+   #   CONFIGSERVER_URI: "http://configserver:9191"
+   #   CONFIGSERVER_PORT: "9191"
+   # ports:
+   #   - "9191:9191"
+   # networks:
+   #   - backend
 
-  eurekaserver:
-    image: eurekaserver
-    ports:
-      - "8761:8761"
-    build:
-      context: ./discoveryserver
-      dockerfile: Dockerfile
-    environment:
+  #eurekaserver:
+   # image: eurekaserver
+   # ports:
+   #   - "8761:8761"
+   # build:
+   #   context: ./discoveryserver
+   #   dockerfile: Dockerfile
+   # environment:
+   #   #CONFIGSERVER_URI: "http://configserver:9191"
+   #   #CONFIGSERVER_PORT: "9191"
+   #   SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
+   #   EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
+      #EUREKASERVER_PORT: "8761"
+   #   WAIT_HOSTS: configserver:9191
+   # depends_on:
+   #   configserver:
+   #     condition: service_started
+   # networks:
+   #   - backend
+
+
+  #gatewayserver:
+   # image: gatewayserver
+   # ports:
+   #   - "8600:8600"
+   # build:
+    #  context: ./api-gateway
+    #  dockerfile: Dockerfile
+    #environment:
+    #  PROFILE: "default"
+    #  SERVER_PORT: "8600"
+    #  #CONFIGSERVER_URI: "http://configserver:9191"
+    #  SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
+    #  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
+      #EUREKASERVER_PORT: "8761"
+      #CONFIGSERVER_PORT: "9191"
+     # WAIT_HOSTS: configserver:9191
+     # SPRING_PROFILES_ACTIVE: path
+     # SPRING_CLOUD_GATEWAY_ROUTES[0]_URI: http://userservice:9000
+     # SPRING_CLOUD_GATEWAY_ROUTES[0]_ID: user-service
+     # SPRING_CLOUD_GATEWAY_ROUTES[0]_PREDICATES[0]: Path= /api/v1/users/*
+     # SPRING_CLOUD_GATEWAY_ROUTES[1]_URI: http://advertisementservice:9002
+     # SPRING_CLOUD_GATEWAY_ROUTES[1]_ID: advertisementservice
+     # SPRING_CLOUD_GATEWAY_ROUTES[1]_PREDICATES[0]: Path=/api/v1/admin_role/*
+     # SPRING_CLOUD_GATEWAY_ROUTES[1]_PREDICATES[1]: Path=/api/v1/user_role/*
+     # SPRING_CLOUD_GATEWAY_ROUTES[2]_URI: http://managementservice:9002
+     # SPRING_CLOUD_GATEWAY_ROUTES[2]_ID: managementservice
+     # SPRING_CLOUD_GATEWAY_ROUTES[2]_PREDICATES[0]: Path=/api/v1/admin_role/*
+     # SPRING_CLOUD_GATEWAY_ROUTES[2]_PREDICATES[1]: Path=/api/v1/user_role/*
+     # SPRING_CLOUD_GATEWAY_ROUTES[3]_URI: http://reportservice:9003
+     # SPRING_CLOUD_GATEWAY_ROUTES[3]_ID: reportservice
+     # SPRING_CLOUD_GATEWAY_ROUTES[3]_PREDICATES[0]: Path=/api/v1/reports/*
+    #depends_on:
+     # configserver:
+      #  condition: service_started
+      #eurekaserver:
+       # condition: service_started
+      #userservice:
+       # condition: service_started
+      #managementservice:
+       # condition: service_started
+      #advertisementservice:
+       # condition: service_started
+      #reportservice:
+       # condition: service_started
+    #networks:
+     # - backend
+
+  #userservice:
+   # image: user-service
+   # build:
+    #  context: ./user-service
+    #  dockerfile: Dockerfile
+    #environment:
+     # SERVER_PORT: "9000"
       #CONFIGSERVER_URI: "http://configserver:9191"
       #CONFIGSERVER_PORT: "9191"
-      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
+      #SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
+      #EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       #EUREKASERVER_PORT: "8761"
-      WAIT_HOSTS: configserver:9191
-    depends_on:
-      configserver:
-        condition: service_started
-    networks:
-      - backend
+      #WAIT_HOSTS: configserver:9191
+      #DATABASE_HOST: database
+      #DATABASE_USER: springmicroserviceuser
+      #DATABASE_PASSWORD: 111111
+      #DATABASE_NAME: springbootuser
+      #DATABASE_PORT: 3306
+      #SPRING_APPLICATION_JSON: '{
+       #       "spring.jpa.hibernate.ddl-auto" : "update"
+     # }'
+    #depends_on:
+     # database:
+     #   condition: service_healthy
+     # configserver:
+     #   condition: service_started
+     # eurekaserver:
+     #   condition: service_started
+    #ports:
+      #- "9000:9000"
+    #networks:
+     # - backend
 
-
-  gatewayserver:
-    image: gatewayserver
-    ports:
-      - "8600:8600"
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
-    environment:
-      PROFILE: "default"
-      SERVER_PORT: "8600"
-      #CONFIGSERVER_URI: "http://configserver:9191"
-      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      #EUREKASERVER_PORT: "8761"
-      #CONFIGSERVER_PORT: "9191"
-      WAIT_HOSTS: configserver:9191
-      SPRING_PROFILES_ACTIVE: path
-      SPRING_CLOUD_GATEWAY_ROUTES[0]_URI: http://userservice:9000
-      SPRING_CLOUD_GATEWAY_ROUTES[0]_ID: user-service
-      SPRING_CLOUD_GATEWAY_ROUTES[0]_PREDICATES[0]: Path= /api/v1/users/*
-      SPRING_CLOUD_GATEWAY_ROUTES[1]_URI: http://advertisementservice:9002
-      SPRING_CLOUD_GATEWAY_ROUTES[1]_ID: advertisementservice
-      SPRING_CLOUD_GATEWAY_ROUTES[1]_PREDICATES[0]: Path=/api/v1/admin_role/*
-      SPRING_CLOUD_GATEWAY_ROUTES[1]_PREDICATES[1]: Path=/api/v1/user_role/*
-      SPRING_CLOUD_GATEWAY_ROUTES[2]_URI: http://managementservice:9002
-      SPRING_CLOUD_GATEWAY_ROUTES[2]_ID: managementservice
-      SPRING_CLOUD_GATEWAY_ROUTES[2]_PREDICATES[0]: Path=/api/v1/admin_role/*
-      SPRING_CLOUD_GATEWAY_ROUTES[2]_PREDICATES[1]: Path=/api/v1/user_role/*
-      SPRING_CLOUD_GATEWAY_ROUTES[3]_URI: http://reportservice:9003
-      SPRING_CLOUD_GATEWAY_ROUTES[3]_ID: reportservice
-      SPRING_CLOUD_GATEWAY_ROUTES[3]_PREDICATES[0]: Path=/api/v1/reports/*
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-      userservice:
-        condition: service_started
-      managementservice:
-        condition: service_started
-      advertisementservice:
-        condition: service_started
-      reportservice:
-        condition: service_started
-    networks:
-      - backend
-
-  userservice:
-    image: user-service
-    build:
-      context: ./user-service
-      dockerfile: Dockerfile
-    environment:
-      SERVER_PORT: "9000"
+  #managementservice:
+   # image: management-service
+   # build:
+   #   context: ./management-service
+   #   dockerfile: Dockerfile
+   # environment:
+    #  SERVER_PORT: "9002"
       #CONFIGSERVER_URI: "http://configserver:9191"
       #CONFIGSERVER_PORT: "9191"
-      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
+    #  SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
+    #  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
       #EUREKASERVER_PORT: "8761"
-      WAIT_HOSTS: configserver:9191
-      DATABASE_HOST: database
-      DATABASE_USER: springmicroserviceuser
-      DATABASE_PASSWORD: 111111
-      DATABASE_NAME: springbootuser
-      DATABASE_PORT: 3306
-      SPRING_APPLICATION_JSON: '{
-              "spring.jpa.hibernate.ddl-auto" : "update"
-      }'
-    depends_on:
-      database:
-        condition: service_healthy
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-    ports:
-      - "9000:9000"
-    networks:
-      - backend
+     # WAIT_HOSTS: configserver:9191
+    #depends_on:
+     # configserver:
+     #   condition: service_started
+     # eurekaserver:
+     #   condition: service_started
+    #ports:
+     # - "9002:9002"
+    #networks:
+     # - backend
 
-  managementservice:
-    image: management-service
-    build:
-      context: ./management-service
-      dockerfile: Dockerfile
-    environment:
-      SERVER_PORT: "9002"
-      #CONFIGSERVER_URI: "http://configserver:9191"
-      #CONFIGSERVER_PORT: "9191"
-      SPRING_CLOUD_CONFIG_URI: "http://configserver:9191"
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      #EUREKASERVER_PORT: "8761"
-      WAIT_HOSTS: configserver:9191
-    depends_on:
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-    ports:
-      - "9002:9002"
-    networks:
-      - backend
-
-  advertisementservice:
-    image: advertisement-service
-    build:
-      context: ./advertisement-service
-      dockerfile: Dockerfile
-    environment:
-      SERVER_PORT: "9001"
-      CONFIGSERVER_URI: "http://configserver:9191"
-      CONFIGSERVER_PORT: "9191"
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      EUREKASERVER_PORT: "8761"
-      WAIT_HOSTS: configserver:9191
-      DATABASE_HOST: database
-      DATABASE_USER: springmicroserviceuser
-      DATABASE_PASSWORD: 111111
-      DATABASE_NAME: springbootadvertisement
-      DATABASE_PORT: 3306
-      SPRING_APPLICATION_JSON: '{
-                  "spring.jpa.hibernate.ddl-auto" : "update"
-      }'
-    depends_on:
-      database:
-        condition: service_healthy
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-    ports:
-      - "9001:9001"
-    networks:
-      - backend
+  #advertisementservice:
+   # image: advertisement-service
+   # build:
+    #  context: ./advertisement-service
+    #  dockerfile: Dockerfile
+    #environment:
+    #  SERVER_PORT: "9001"
+    #  CONFIGSERVER_URI: "http://configserver:9191"
+    #  CONFIGSERVER_PORT: "9191"
+    #  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
+    #  EUREKASERVER_PORT: "8761"
+    #  WAIT_HOSTS: configserver:9191
+    #  DATABASE_HOST: database
+    #  DATABASE_USER: springmicroserviceuser
+    #  DATABASE_PASSWORD: 111111
+    #  DATABASE_NAME: springbootadvertisement
+    #  DATABASE_PORT: 3306
+    #  SPRING_APPLICATION_JSON: '{
+    #              "spring.jpa.hibernate.ddl-auto" : "update"
+    #  }'
+    #depends_on:
+     # database:
+     #   condition: service_healthy
+     # configserver:
+     #   condition: service_started
+     # eurekaserver:
+     #   condition: service_started
+    #ports:
+     # - "9001:9001"
+    #networks:
+     # - backend
 
 
-  reportservice:
-    image: report-service
-    build:
-      context: ./report-service
-      dockerfile: Dockerfile
-    environment:
-      SERVER_PORT: "9003"
-      CONFIGSERVER_URI: "http://configserver:9191"
-      CONFIGSERVER_PORT: "9191"
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
-      EUREKASERVER_PORT: "8761"
-      WAIT_HOSTS: configserver:9191
-      DATABASE_HOST: database
-      DATABASE_USER: springmicroserviceuser
-      DATABASE_PASSWORD: 111111
-      DATABASE_NAME: springbootreport
-      DATABASE_PORT: 3306
-      SPRING_APPLICATION_JSON: '{
-                      "spring.jpa.hibernate.ddl-auto" : "update"
-      }'
-    depends_on:
-      database:
-        condition: service_healthy
-      configserver:
-        condition: service_started
-      eurekaserver:
-        condition: service_started
-    ports:
-      - "9003:9003"
-    networks:
-      - backend
+  #reportservice:
+   # image: report-service
+   # build:
+    #  context: ./report-service
+    #  dockerfile: Dockerfile
+    #environment:
+    #  SERVER_PORT: "9003"
+    #  CONFIGSERVER_URI: "http://configserver:9191"
+    #  CONFIGSERVER_PORT: "9191"
+    #  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eurekaserver:8761/eureka/"
+    #  EUREKASERVER_PORT: "8761"
+    #  WAIT_HOSTS: configserver:9191
+    #  DATABASE_HOST: database
+    #  DATABASE_USER: springmicroserviceuser
+    #  DATABASE_PASSWORD: 111111
+    #  DATABASE_NAME: springbootreport
+    #  DATABASE_PORT: 3306
+    #  SPRING_APPLICATION_JSON: '{
+    #                  "spring.jpa.hibernate.ddl-auto" : "update"
+    #  }'
+    #depends_on:
+    #  database:
+    #    condition: service_healthy
+    #  configserver:
+    #    condition: service_started
+    #  eurekaserver:
+    #    condition: service_started
+    #ports:
+    #  - "9003:9003"
+    #networks:
+    #  - backend
 
 networks:
   backend:
     driver: bridge
 
 
-volumes:
-  db-data:
+#volumes:
+#  db-data:
