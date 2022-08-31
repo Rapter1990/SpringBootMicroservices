@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/management/admin_role")
+@RequestMapping("/api/v1/admin_role")
 @RequiredArgsConstructor
 public class AdminController {
 
@@ -82,9 +82,9 @@ public class AdminController {
     @CircuitBreaker(name = "management", fallbackMethod = "managementFallback")
     public ResponseEntity<?> approveAdvertisement(@PathVariable String advertisementId){
 
-        LOGGER.info("AdminController | getAdvertisementById is started");
+        LOGGER.info("AdminController | approveAdvertisement is started");
 
-        LOGGER.info("AdminController | getAdvertisementById | advertisementId : " + advertisementId);
+        LOGGER.info("AdminController | approveAdvertisement | advertisementId : " + advertisementId);
 
         return adminService.approveAdvertisement(advertisementId);
     }
