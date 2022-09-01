@@ -8,12 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="discoveryserver" />
+        <module name="management-service" />
         <module name="report-service" />
-        <module name="api-gateway" />
         <module name="advertisement-service" />
         <module name="user-service" />
         <module name="configserver" />
-        <module name="management-service" />
+        <module name="api-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
