@@ -1,6 +1,6 @@
 # Spring Boot Microservice Example(Eureka Server, Config Server, API Gateway, Services , RabbitMq, Keycloak)
 
-<img src="screenshots/springbootmicroservices.drawio_image.png" alt="Main Information" width="800" height="700">
+<img src="screenshots/springbootmicroservices.drawio_image.png" alt="Main Information" width="800" height="900">
 
 # About the project
 <ul style="list-style-type:disc">
