@@ -7,13 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="discoveryserver" />
-        <module name="management-service" />
-        <module name="report-service" />
+        <module name="apigateway" />
+        <module name="management" />
         <module name="advertisement-service" />
+        <module name="userservice" />
+        <module name="api-gateway" />
+        <module name="advertisement" />
+        <module name="report" />
+        <module name="discoveryserver" />
+        <module name="report-service" />
         <module name="user-service" />
         <module name="configserver" />
-        <module name="api-gateway" />
+        <module name="management-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,14 +27,19 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="advertisement" options="-parameters" />
       <module name="advertisement-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
+      <module name="apigateway" options="-parameters" />
       <module name="configserver" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
+      <module name="management" options="-parameters" />
       <module name="management-service" options="-parameters" />
+      <module name="report" options="-parameters" />
       <module name="report-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
+      <module name="userservice" options="-parameters" />
     </option>
   </component>
 </project>
